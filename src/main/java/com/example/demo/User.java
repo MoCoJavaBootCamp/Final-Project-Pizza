@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="users_db")
@@ -40,6 +41,12 @@ public class User {
 
     @Column(name = "orders")
     private long orders;
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Pizza> pizzas;
 
 
     public User(){}
@@ -144,5 +151,21 @@ public class User {
 
     public void setOrders(long orders) {
         this.orders = orders;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(Set<Pizza> pizzas) {
+        this.pizzas = pizzas;
     }
 }
