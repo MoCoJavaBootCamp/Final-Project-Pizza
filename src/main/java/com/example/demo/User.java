@@ -26,18 +26,35 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="enabled")
-    private boolean enabled;
+    @Column(name="phone")
+    private long phoneNumber;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zip")
+    private int zip;
+
+    @Column(name = "orders")
+    private long orders;
+
 
     public User(){}
 
-    public User(String username, String email, String password, String firstName, String lastName, boolean enabled) {
+    public User(String username, String email, String password, String firstName, String lastName, long phoneNumber, String street, String city, int zip, long orders) {
         this.username = username;
         this.email = email;
-        this.setPassword(password);
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.enabled = enabled;
+        this.phoneNumber = phoneNumber;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+        this.orders = orders;
     }
 
     public long getId() {
@@ -89,11 +106,43 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isEnabled() {
-        return enabled;
+    public long getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void setPhoneNumber(long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
+    }
+
+    public long getOrders() {
+        return orders;
+    }
+
+    public void setOrders(long orders) {
+        this.orders = orders;
     }
 }
