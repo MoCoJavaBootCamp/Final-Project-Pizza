@@ -5,7 +5,7 @@
 |---|---|
 | [Andrew (azdoolittle)](https://github.com/azdoolittle) | SecConfig, Role, RoleRepo, Reports, ReportsRepo |
 | [Eyasu (eyasuh)](https://github.com/eyasuh) | User, UserRepo, Register, Base fragment template |
-| [Jaeha (jsong073)](https://github.com/json073) | Pizza, PizzaRepo |
+| [Jaeha (jsong073)](https://github.com/jsong073) | Pizza, PizzaRepo |
 ## Pages
 - home
 - login
