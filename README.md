@@ -31,7 +31,7 @@
 |---|---|---|---|---|---|
 | long | string | ArrayList`<long>` | double | long | dateTime |
 
-### Topping
+### ToppingStats
 | id | name | price  | count | 
 |---|---|---|---|
 | long | string | double | long |
