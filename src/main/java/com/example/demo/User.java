@@ -57,7 +57,7 @@ public class User {
                 String city,
                 int zip) {
         this.username = username;
-        this.password = password;
+        this.setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

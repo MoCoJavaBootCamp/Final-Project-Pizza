@@ -12,7 +12,11 @@ public class SpringSecurityJdbcDataSource {
     }
 
     @Bean
-    public CommandLineRunner run(UserRepository userRepository, RoleRepository roleRepository) throws Exception {
+    public CommandLineRunner run(UserRepository userRepository,
+                                 RoleRepository roleRepository,
+                                 PizzaRepository pizzaRepository,
+                                 ToppingRepository toppingRepository,
+                                 ReportRepository reportRepository) throws Exception {
         return (String[] args) -> {
             User user = new User("bart@gmail.com",
                     "password",
@@ -22,12 +26,19 @@ public class SpringSecurityJdbcDataSource {
                     "123 Main Street",
                     "Springfield",
                     12345);
-            Role userRole = new Role("bart", "ROLE_USER");
+            Role userRole = new Role("bart@gmail.com", "ROLE_USER");
 
             userRepository.save(user);
             roleRepository.save(userRole);
 
-            User admin = new User("admin@domain.com", "admin", "Admin", "Account", 555555555, "123 Admin Street", "Admin City", 12345);
+            User admin = new User("admin@domain.com",
+                    "admin",
+                    "Admin",
+                    "Account",
+                    555555555,
+                    "123 Admin Street",
+                    "Admin City",
+                    12345);
             Role adminRole = new Role("admin@domain.com", "ROLE_ADMIN");
 
             userRepository.save(admin);
