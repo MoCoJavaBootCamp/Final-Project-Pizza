@@ -20,45 +20,45 @@
         <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
     </strong></mark>
     <br />
-    Email<br>
-    <input type="text" id="email" placeholder="Email" th:field="*{email}"/>
-    <mark><strong>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
-    </strong></mark>
-    <br />
+<!--    Email<br>-->
+<!--    <input type="text" id="email" placeholder="Email" th:field="*{email}"/>-->
+<!--    <mark><strong>-->
+<!--        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>-->
+<!--    </strong></mark>-->
+<!--    <br />-->
 
     Phone Number<br>
     <input type="text" id="phone" placeholder="Phone number" th:field="*{phoneNumber}"/>
     <mark><strong>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{phoneNumber}">Phone number Error</span>
+        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone number Error</span>
     </strong></mark>
     <br />
 
     Street name <br>
     <input type="text" id="street" placeholder="Street name" th:field="*{street}"/>
     <mark><strong>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{street}">Street Error</span>
+        <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Street Error</span>
     </strong></mark>
     <br />
 
     City <br>
     <input type="text" id="city" placeholder="City" th:field="*{city}"/>
     <mark><strong>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{city}">Phone number Error</span>
+        <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Phone number Error</span>
     </strong></mark>
     <br />
 
     Zip code<br>
     <input type="number" id="zip" placeholder="Zip Code" th:field="*{zip}"/>
     <mark><strong>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{zip}">Zip Error</span>
+        <span th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}">Zip Error</span>
     </strong></mark>
     <br />
 
-    Username<br>
-    <input type="text" id="username" placeholder="Username" th:field="*{username}"/>
+    Email<br>
+    <input type="email" id="username" placeholder="Username" th:field="*{username}"/>
     <mark><strong>
-        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Email Error</span>
     </strong></mark>
     <br />
     Password<br>
