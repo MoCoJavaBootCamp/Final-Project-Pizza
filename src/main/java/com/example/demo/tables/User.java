@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.tables;
 
+import com.example.demo.tables.Pizza;
 import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -63,6 +64,7 @@ public class User {
     public Set<Pizza> pizza;
 
     public User(){}
+
 
     public User(
                 String username,

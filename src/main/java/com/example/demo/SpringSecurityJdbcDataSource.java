@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.repository.*;
+import com.example.demo.tables.Role;
+import com.example.demo.tables.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,11 +32,11 @@ public class SpringSecurityJdbcDataSource {
                     12345,
                     true);
             Role userRole = new Role("bart@gmail.com", "ROLE_USER");
-
             userRepository.save(user);
             roleRepository.save(userRole);
 
-            User admin = new User("admin@domain.com",
+            User admin = new User(
+                    "admin@domain.com",
                     "admin",
                     "Admin",
                     "Account",
@@ -43,7 +46,6 @@ public class SpringSecurityJdbcDataSource {
                     12345,
                     true);
             Role adminRole = new Role("admin@domain.com", "ROLE_ADMIN");
-
             userRepository.save(admin);
             roleRepository.save(adminRole);
         };
