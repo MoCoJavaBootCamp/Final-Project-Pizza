@@ -16,7 +16,7 @@ public class Report {
     @Column(name="total_sales")
     private double totalSales;
 
-
+    @Column(name="date")
     private LocalDateTime date;
 
     @ManyToMany
