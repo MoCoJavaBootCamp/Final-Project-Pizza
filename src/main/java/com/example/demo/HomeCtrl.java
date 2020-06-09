@@ -26,10 +26,10 @@ public class HomeCtrl {
     ReportRepository reportRepository;
 
     @Autowired
-    ToppingRepository toppingRepository;
+    PizzaRepository pizzaRepository;
 
     @Autowired
-    PizzaRepository pizzaRepository;
+    ToppingRepository toppingRepository;
 
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
@@ -76,14 +76,13 @@ public class HomeCtrl {
         return "redirect:/login?logout=true";
     }
 
+    /* === ADMIN ROUTES === */
     @RequestMapping("/admin")
-    public String admin() {
+    public String admin(Model model) {
+        model.addAttribute("allusers", userRepository.findAll());
+        model.addAttribute("toptoppings", toppingRepository
+                .findTop3ByCountIsNotNullOrderByCountDesc());
         return "admin";
     }
 
-    @RequestMapping("/userslist")
-    public String listUsers(Model model) {
-        model.addAttribute("allusers", userRepository.findAll());
-        return "userslist";
-    }
 }

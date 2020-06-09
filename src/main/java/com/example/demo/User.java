@@ -20,11 +20,6 @@ public class User {
     @Column(name="username")
     private String username;
 
-//    @NotNull
-//    @Size(min = 2)
-//    @Column(name="email")
-//    private String email;
-
     @NotNull
     @Size(min = 2)
     @Column(name="password")
@@ -106,14 +101,6 @@ public class User {
         this.username = username;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-
     public String getPassword() {
         return password;
     }
@@ -175,15 +162,15 @@ public class User {
         return pizza;
     }
 
+    public void setPizza(Set<Pizza> pizza) {
+        this.pizza = pizza;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public void setPizza(Set<Pizza> pizza) {
-        this.pizza = pizza;
     }
 }
