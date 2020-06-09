@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.repository.*;
+import com.example.demo.tables.Role;
+import com.example.demo.tables.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,21 +15,37 @@ public class SpringSecurityJdbcDataSource {
     }
 
     @Bean
-    public CommandLineRunner run(UserRepository userRepository, RoleRepository roleRepository) throws Exception {
+    public CommandLineRunner run(UserRepository userRepository,
+                                 RoleRepository roleRepository,
+                                 PizzaRepository pizzaRepository,
+                                 ToppingRepository toppingRepository,
+                                 ReportRepository reportRepository) throws Exception {
         return (String[] args) -> {
-            User user = new User("user", "user@domain.com", "user", "User",
-                    "Account",202222222, "may st", "ssp",20005, true);
-            Role userRole = new Role("user", "ROLE_USER");
-
+            User user = new User(
+                    "bart@gmail.com",
+                    "password",
+                    "Bart",
+                    "Simpson",
+                    30312567,
+                    "123 Main Street",
+                    "Springfield",
+                    12345,
+                    true);
+            Role userRole = new Role("bart@gmail.com", "ROLE_USER");
             userRepository.save(user);
             roleRepository.save(userRole);
 
-            User admin = new User("admin", "admin@domain.com", "admin", "Admin",
-                    "Account", 202222222,
+            User admin = new User(
+                    "admin@domain.com",
+                    "admin",
+                    "Admin",
+                    "Account",
+                    555555555,
                     "123 Admin Street",
-                    "Admin City", 90210, true);
-            Role adminRole = new Role("admin", "ROLE_ADMIN");
-
+                    "Admin City",
+                    12345,
+                    true);
+            Role adminRole = new Role("admin@domain.com", "ROLE_ADMIN");
             userRepository.save(admin);
             roleRepository.save(adminRole);
         };

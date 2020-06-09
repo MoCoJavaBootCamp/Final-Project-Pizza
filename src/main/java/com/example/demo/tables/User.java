@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.example.demo.tables;
 
+import com.example.demo.tables.Pizza;
 import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -19,11 +20,6 @@ public class User {
     @Size(min = 2)
     @Column(name="username")
     private String username;
-
-    @NotNull
-    @Size(min = 2)
-    @Column(name="email")
-    private String email;
 
     @NotNull
     @Size(min = 2)
@@ -69,8 +65,9 @@ public class User {
 
     public User(){}
 
-    public User(String username,
-                String email,
+
+    public User(
+                String username,
                 String password,
                 String firstName,
                 String lastName,
@@ -80,7 +77,6 @@ public class User {
                 int zip,
                 boolean enabled) {
         this.username = username;
-        this.email = email;
         setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,21 +84,6 @@ public class User {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.enabled = enabled;
-    }
-
-    public User(String username, String email, String password, String firstName, String lastName,
-                long phoneNumber, String street, String city, int zip, Set<Pizza> pizza, boolean enabled) {
-        this.username = username;
-        this.email = email;
-        setPassword(password);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.street = street;
-        this.city = city;
-        this.zip = zip;
-        this.pizza = pizza;
         this.enabled = enabled;
     }
 
@@ -120,14 +101,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
@@ -191,15 +164,15 @@ public class User {
         return pizza;
     }
 
+    public void setPizza(Set<Pizza> pizza) {
+        this.pizza = pizza;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public void setPizza(Set<Pizza> pizza) {
-        this.pizza = pizza;
     }
 }

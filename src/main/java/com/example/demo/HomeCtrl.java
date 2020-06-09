@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import com.example.demo.repository.*;
+import com.example.demo.tables.Role;
+import com.example.demo.tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +27,12 @@ public class HomeCtrl {
 
     @Autowired
     ReportRepository reportRepository;
+
+    @Autowired
+    PizzaRepository pizzaRepository;
+
+    @Autowired
+    ToppingRepository toppingRepository;
 
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
@@ -70,14 +79,13 @@ public class HomeCtrl {
         return "redirect:/login?logout=true";
     }
 
+    /* === ADMIN ROUTES === */
     @RequestMapping("/admin")
-    public String admin() {
+    public String admin(Model model) {
+        model.addAttribute("allusers", userRepository.findAll());
+        model.addAttribute("toptoppings", toppingRepository
+                .findTop3ByCountIsNotNullOrderByCountDesc());
         return "admin";
     }
 
-    @RequestMapping("/userslist")
-    public String listUsers(Model model) {
-        model.addAttribute("allusers", userRepository.findAll());
-        return "userslist";
-    }
 }
