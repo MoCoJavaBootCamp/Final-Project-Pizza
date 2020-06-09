@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="users_db")
@@ -38,13 +39,21 @@ public class User {
     @Column(name = "zip")
     private int zip;
 
-    @Column(name = "orders")
-    private long orders;
+    @Column (name = "enabled")
+    private boolean enabled;
 
+//    @Column(name = "orders")
+//    private long orders;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+    fetch = FetchType.EAGER)
+    public Set<Pizza> pizza;
 
     public User(){}
 
-    public User(String username, String email, String password, String firstName, String lastName, long phoneNumber, String street, String city, int zip, long orders) {
+    public User(String username, String email, String password, String firstName,
+                String lastName, long phoneNumber,
+                String street, String city, int zip, boolean enabled) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -54,7 +63,22 @@ public class User {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.orders = orders;
+        this.enabled = enabled;
+    }
+
+    public User(String username, String email, String password, String firstName, String lastName,
+                long phoneNumber, String street, String city, int zip, Set<Pizza> pizza, boolean enabled) {
+        this.username = username;
+        this.email = email;
+        setPassword(password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+        this.pizza = pizza;
+        this.enabled = enabled;
     }
 
     public long getId() {
@@ -138,11 +162,19 @@ public class User {
         this.zip = zip;
     }
 
-    public long getOrders() {
-        return orders;
+    public Set<Pizza> getPizza() {
+        return pizza;
     }
 
-    public void setOrders(long orders) {
-        this.orders = orders;
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setPizza(Set<Pizza> pizza) {
+        this.pizza = pizza;
     }
 }
