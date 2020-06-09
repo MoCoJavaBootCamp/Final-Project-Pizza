@@ -25,6 +25,12 @@ public class HomeCtrl {
     @Autowired
     ReportRepository reportRepository;
 
+    @Autowired
+    ToppingRepository toppingRepository;
+
+    @Autowired
+    PizzaRepository pizzaRepository;
+
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
         String username = principal.getName();

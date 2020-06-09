@@ -20,10 +20,10 @@ public class User {
     @Column(name="username")
     private String username;
 
-    @NotNull
-    @Size(min = 2)
-    @Column(name="email")
-    private String email;
+//    @NotNull
+//    @Size(min = 2)
+//    @Column(name="email")
+//    private String email;
 
     @NotNull
     @Size(min = 2)
@@ -72,11 +72,25 @@ public class User {
 
     public User(){}
 
+    public User(@Size(min = 2) String username, @Size(min = 2) String password, @Size(min = 2) String firstName,
+                @Size(min = 2) String lastName, @Min(5) long phoneNumber, @Size(min = 2) String street,
+                @Size(min = 2) String city, @Min(5) int zip, boolean enabled) {
+        this.username = username;
+        this.setPassword(password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+        this.enabled = enabled;
+    }
+
     public User(String username, String email, String password, String firstName,
                 String lastName, long phoneNumber,
                 String street, String city, int zip, boolean enabled) {
         this.username = username;
-        this.email = email;
+//        this.email = email;
         setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -90,7 +104,7 @@ public class User {
     public User(String username, String email, String password, String firstName, String lastName,
                 long phoneNumber, String street, String city, int zip, Set<Pizza> pizza, boolean enabled) {
         this.username = username;
-        this.email = email;
+//        this.email = email;
         setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -118,13 +132,13 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public String getPassword() {
         return password;
