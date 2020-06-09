@@ -12,11 +12,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name="username")    //User will be asked to type in their e-mail to serve as their username
+    @Column(name="username")
     private String username;
-
-//    @Column(name="email")
-//    private String email;
 
     @Column(name="password")
     private String password;
@@ -39,6 +36,9 @@ public class User {
     @Column(name = "zip")
     private int zip;
 
+    @Column(name = "orders")
+    private long orders;
+
     @Column(name = "enabled")
     private boolean enabled;
 
@@ -48,7 +48,14 @@ public class User {
 
     public User(){}
 
-    public User(String username, String password, String firstName, String lastName, long phoneNumber, String street, String city, int zip, boolean enabled, Set<Pizza> pizzas) {
+    public User(String username,
+                String password,
+                String firstName,
+                String lastName,
+                long phoneNumber,
+                String street,
+                String city,
+                int zip) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -57,15 +64,7 @@ public class User {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.pizzas = pizzas;
-    }
-
-    public User(String username, String password, String firstName, String lastName, boolean enabled) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.enabled = enabled;
+        this.setEnabled(true);
     }
 
     public long getId() {
@@ -139,6 +138,14 @@ public class User {
 
     public void setZip(int zip) {
         this.zip = zip;
+    }
+
+    public long getOrders() {
+        return orders;
+    }
+
+    public void setOrders(long orders) {
+        this.orders = orders;
     }
 
     public boolean isEnabled() {

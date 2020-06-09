@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -12,20 +13,22 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id")
-    private Set<Long> users;
-
     @Column(name="total_sales")
     private double totalSales;
 
-    @OneToMany(mappedBy = "report",
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.EAGER)
-    private ArrayList<Long> topToppings;
+    @Column(name="date")
+    private LocalDateTime date;
 
+    @ManyToMany
+    private Set<User> users;
+
+    @ManyToMany
+    private Set<Topping> topToppings;
+
+    //Constructors
     public Report(){}
 
+    //Getters & Setters
     public long getId() {
         return id;
     }
@@ -42,11 +45,27 @@ public class Report {
         this.totalSales = totalSales;
     }
 
-    public ArrayList<Long> getTopToppings() {
+    public LocalDateTime getDate() { return date; }
+
+    public void setDate(LocalDateTime date) { this.date = date; }
+
+    public Set<User> getUsers() { return users; }
+
+    public void setUsers(Set<User> users) { this.users = users; }
+
+    public Set<Topping> getTopToppings() {
         return topToppings;
     }
 
-    public void setTopToppings(ArrayList<Long> topToppings) {
+    public void setTopToppings(Set<Topping> topToppings) {
         this.topToppings = topToppings;
     }
+
+    //Report Generation Options
+
+    //list all customers
+    //list customer by name
+    //list top 3 toppings
+    //total sales
+
 }
