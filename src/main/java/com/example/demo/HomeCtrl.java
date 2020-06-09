@@ -22,6 +22,9 @@ public class HomeCtrl {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    ReportRepository reportRepository;
+
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
         String username = principal.getName();
@@ -70,5 +73,11 @@ public class HomeCtrl {
     @RequestMapping("/admin")
     public String admin() {
         return "admin";
+    }
+
+    @RequestMapping("/userslist")
+    public String listUsers(Model model) {
+        model.addAttribute("allusers", userRepository.findAll());
+        return "userslist";
     }
 }
