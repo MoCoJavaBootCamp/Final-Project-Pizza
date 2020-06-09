@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.repository.*;
+import com.example.demo.tables.Pizza;
 import com.example.demo.tables.Role;
 import com.example.demo.tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
