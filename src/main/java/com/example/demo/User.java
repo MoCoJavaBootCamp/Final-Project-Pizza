@@ -1,8 +1,11 @@
 package com.example.demo;
 
+import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -12,30 +15,48 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="username")
     private String username;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="email")
     private String email;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="password")
     private String password;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="first_name")
     private String firstName;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="last_name")
     private String lastName;
 
+    @NotNull
+    @Min(5)
     @Column(name="phone")
     private long phoneNumber;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name = "street")
     private String street;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name = "city")
     private String city;
 
+    @NotNull
+    @Min(5)
     @Column(name = "zip")
     private int zip;
 
@@ -56,7 +77,7 @@ public class User {
                 String street, String city, int zip, boolean enabled) {
         this.username = username;
         this.email = email;
-        this.password = password;
+        setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
