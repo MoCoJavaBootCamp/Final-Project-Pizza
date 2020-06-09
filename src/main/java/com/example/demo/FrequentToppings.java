@@ -1,6 +1,7 @@
 package com.example.demo;
 
 public class FrequentToppings {
+
 	private final Pizza topping;
 	private  long count;
 

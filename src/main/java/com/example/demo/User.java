@@ -15,9 +15,6 @@ public class User {
     @Column(name="username")
     private String username;
 
-    @Column(name="email")
-    private String email;
-
     @Column(name="password")
     private String password;
 
@@ -39,9 +36,12 @@ public class User {
     @Column(name = "zip")
     private int zip;
 
+<<<<<<< HEAD
     @Column(name = "orders")
     private long orders;
 
+=======
+>>>>>>> andrewsbranch
     @Column(name = "enabled")
     private boolean enabled;
 
@@ -51,9 +51,15 @@ public class User {
 
     public User(){}
 
-    public User(String username, String email, String password, String firstName, String lastName, long phoneNumber, String street, String city, int zip, long orders) {
+    public User(String username,
+                String password,
+                String firstName,
+                String lastName,
+                long phoneNumber,
+                String street,
+                String city,
+                int zip) {
         this.username = username;
-        this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -61,7 +67,7 @@ public class User {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.orders = orders;
+        this.setEnabled(true);
     }
 
     public long getId() {
@@ -78,14 +84,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
