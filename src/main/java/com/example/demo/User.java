@@ -14,9 +14,6 @@ public class User {
     @Column(name="username")
     private String username;
 
-    @Column(name="email")
-    private String email;
-
     @Column(name="password")
     private String password;
 
@@ -26,18 +23,40 @@ public class User {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="enabled")
+    @Column(name="phone")
+    private long phoneNumber;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zip")
+    private int zip;
+
+    @Column(name = "enabled")
     private boolean enabled;
 
     public User(){}
 
-    public User(String username, String email, String password, String firstName, String lastName, boolean enabled) {
+    public User(String username,
+                String password,
+                String firstName,
+                String lastName,
+                long phoneNumber,
+                String street,
+                String city,
+                int zip) {
         this.username = username;
-        this.email = email;
-        this.setPassword(password);
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.enabled = enabled;
+        this.phoneNumber = phoneNumber;
+        this.street = street;
+        this.city = city;
+        this.zip = zip;
+        this.setEnabled(true);
     }
 
     public long getId() {
@@ -54,14 +73,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
