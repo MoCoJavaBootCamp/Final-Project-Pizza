@@ -76,6 +76,8 @@ public class HomeCtrl {
         return "redirect:/login?logout=true";
     }
 
+    
+
     /* === ADMIN ROUTES === */
     @RequestMapping("/admin")
     public String admin(Model model) {
