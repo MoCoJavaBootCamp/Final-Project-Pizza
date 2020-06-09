@@ -19,6 +19,10 @@ public class Topping {
 
     private int count;
 
+    public Topping(String name) {
+        this.name = name;
+    }
+
     @ManyToMany(mappedBy = "toppings")
     private Set<Pizza> pizzas;
 

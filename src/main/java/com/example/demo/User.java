@@ -12,11 +12,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name="username")
+    @Column(name="username")    //User will be asked to type in their e-mail to serve as their username
     private String username;
 
-    @Column(name="email")
-    private String email;
+//    @Column(name="email")
+//    private String email;
 
     @Column(name="password")
     private String password;
@@ -39,9 +39,6 @@ public class User {
     @Column(name = "zip")
     private int zip;
 
-    @Column(name = "orders")
-    private long orders;
-
     @Column(name = "enabled")
     private boolean enabled;
 
@@ -51,9 +48,8 @@ public class User {
 
     public User(){}
 
-    public User(String username, String email, String password, String firstName, String lastName, long phoneNumber, String street, String city, int zip, long orders) {
+    public User(String username, String password, String firstName, String lastName, long phoneNumber, String street, String city, int zip, boolean enabled, Set<Pizza> pizzas) {
         this.username = username;
-        this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -61,7 +57,15 @@ public class User {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.orders = orders;
+        this.pizzas = pizzas;
+    }
+
+    public User(String username, String password, String firstName, String lastName, boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enabled = enabled;
     }
 
     public long getId() {
@@ -78,14 +82,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
@@ -143,14 +139,6 @@ public class User {
 
     public void setZip(int zip) {
         this.zip = zip;
-    }
-
-    public long getOrders() {
-        return orders;
-    }
-
-    public void setOrders(long orders) {
-        this.orders = orders;
     }
 
     public boolean isEnabled() {
