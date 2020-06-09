@@ -22,11 +22,6 @@ public class User {
 
     @NotNull
     @Size(min = 2)
-    @Column(name="email")
-    private String email;
-
-    @NotNull
-    @Size(min = 2)
     @Column(name="password")
     private String password;
 
