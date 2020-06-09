@@ -63,34 +63,23 @@ public class User {
     @Column (name = "enabled")
     private boolean enabled;
 
-//    @Column(name = "orders")
-//    private long orders;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
     fetch = FetchType.EAGER)
     public Set<Pizza> pizza;
 
     public User(){}
 
-    public User(@Size(min = 2) String username, @Size(min = 2) String password, @Size(min = 2) String firstName,
-                @Size(min = 2) String lastName, @Min(5) long phoneNumber, @Size(min = 2) String street,
-                @Size(min = 2) String city, @Min(5) int zip, boolean enabled) {
+    public User(
+                String username,
+                String password,
+                String firstName,
+                String lastName,
+                long phoneNumber,
+                String street,
+                String city,
+                int zip,
+                boolean enabled) {
         this.username = username;
-        this.setPassword(password);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.street = street;
-        this.city = city;
-        this.zip = zip;
-        this.enabled = enabled;
-    }
-
-    public User(String username, String email, String password, String firstName,
-                String lastName, long phoneNumber,
-                String street, String city, int zip, boolean enabled) {
-        this.username = username;
-//        this.email = email;
         setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -98,21 +87,6 @@ public class User {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.enabled = enabled;
-    }
-
-    public User(String username, String email, String password, String firstName, String lastName,
-                long phoneNumber, String street, String city, int zip, Set<Pizza> pizza, boolean enabled) {
-        this.username = username;
-//        this.email = email;
-        setPassword(password);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.street = street;
-        this.city = city;
-        this.zip = zip;
-        this.pizza = pizza;
         this.enabled = enabled;
     }
 
