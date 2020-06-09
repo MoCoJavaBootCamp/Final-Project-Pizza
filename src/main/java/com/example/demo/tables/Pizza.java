@@ -1,12 +1,10 @@
-package com.example.demo;
+package com.example.demo.tables;
 
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Set;
 
 @Entity

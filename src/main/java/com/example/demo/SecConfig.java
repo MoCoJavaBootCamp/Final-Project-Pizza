@@ -20,6 +20,8 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/").permitAll()
+                .antMatchers("/register").permitAll()
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 //.antMatchers("/register").permitAll()
                 //.antMatchers("/h2-console/**").hasRole("ADMIN")

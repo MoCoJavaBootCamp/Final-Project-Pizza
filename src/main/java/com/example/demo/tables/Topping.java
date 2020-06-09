@@ -1,9 +1,9 @@
-package com.example.demo;
+package com.example.demo.tables;
 
+import com.example.demo.tables.Pizza;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
