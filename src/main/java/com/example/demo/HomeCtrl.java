@@ -79,10 +79,16 @@ public class HomeCtrl {
     /* === ADMIN ROUTES === */
     @RequestMapping("/admin")
     public String admin(Model model) {
+        double totalcost = 0.00;
+        Set<Pizza> allpizzas = pizzaRepository.findAll();
+        for (Pizza pizza : allpizzas) {
+            totalcost += pizza.getPrice();
+        }
+
         model.addAttribute("allusers", userRepository.findAll());
+        model.addAttribute("totalcost", totalcost);
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());
         return "admin";
     }
-
 }
