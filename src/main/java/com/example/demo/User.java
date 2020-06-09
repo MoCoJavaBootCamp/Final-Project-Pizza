@@ -36,12 +36,9 @@ public class User {
     @Column(name = "zip")
     private int zip;
 
-<<<<<<< HEAD
     @Column(name = "orders")
     private long orders;
 
-=======
->>>>>>> andrewsbranch
     @Column(name = "enabled")
     private boolean enabled;
 
