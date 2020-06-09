@@ -1,8 +1,11 @@
 package com.example.demo;
 
+import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -12,59 +15,79 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="username")
     private String username;
 
+    @NotNull
+    @Size(min = 2)
+    @Column(name="email")
+    private String email;
+
+    @NotNull
+    @Size(min = 2)
     @Column(name="password")
     private String password;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="first_name")
     private String firstName;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name="last_name")
     private String lastName;
 
+    @NotNull
+    @Min(5)
     @Column(name="phone")
     private long phoneNumber;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name = "street")
     private String street;
 
+    @NotNull
+    @Size(min = 2)
     @Column(name = "city")
     private String city;
 
+    @NotNull
+    @Min(5)
     @Column(name = "zip")
     private int zip;
 
-    @Column(name = "orders")
-    private long orders;
-
-    @Column(name = "enabled")
+    @Column (name = "enabled")
     private boolean enabled;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Pizza> pizzas;
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
+    fetch = FetchType.EAGER)
+    public Set<Pizza> pizza;
 
     public User(){}
 
-    public User(String username,
+    public User(
+                String username,
                 String password,
                 String firstName,
                 String lastName,
                 long phoneNumber,
                 String street,
                 String city,
-                int zip) {
+                int zip,
+                boolean enabled) {
         this.username = username;
-        this.setPassword(password);
+        setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.street = street;
         this.city = city;
         this.zip = zip;
-        this.setEnabled(true);
+        this.enabled = enabled;
     }
 
     public long getId() {
@@ -81,6 +104,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -140,12 +171,8 @@ public class User {
         this.zip = zip;
     }
 
-    public long getOrders() {
-        return orders;
-    }
-
-    public void setOrders(long orders) {
-        this.orders = orders;
+    public Set<Pizza> getPizza() {
+        return pizza;
     }
 
     public boolean isEnabled() {
@@ -156,11 +183,7 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Set<Pizza> getPizzas() {
-        return pizzas;
-    }
-
-    public void setPizzas(Set<Pizza> pizzas) {
-        this.pizzas = pizzas;
+    public void setPizza(Set<Pizza> pizza) {
+        this.pizza = pizza;
     }
 }

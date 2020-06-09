@@ -18,14 +18,16 @@ public class SpringSecurityJdbcDataSource {
                                  ToppingRepository toppingRepository,
                                  ReportRepository reportRepository) throws Exception {
         return (String[] args) -> {
-            User user = new User("bart@gmail.com",
+            User user = new User(
+                    "bart@gmail.com",
                     "password",
                     "Bart",
                     "Simpson",
                     30312567,
                     "123 Main Street",
                     "Springfield",
-                    12345);
+                    12345,
+                    true);
             Role userRole = new Role("bart@gmail.com", "ROLE_USER");
 
             userRepository.save(user);
@@ -38,7 +40,8 @@ public class SpringSecurityJdbcDataSource {
                     555555555,
                     "123 Admin Street",
                     "Admin City",
-                    12345);
+                    12345,
+                    true);
             Role adminRole = new Role("admin@domain.com", "ROLE_ADMIN");
 
             userRepository.save(admin);
