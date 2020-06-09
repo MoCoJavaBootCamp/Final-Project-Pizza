@@ -63,18 +63,22 @@ public class User {
     @Column (name = "enabled")
     private boolean enabled;
 
-//    @Column(name = "orders")
-//    private long orders;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
     fetch = FetchType.EAGER)
     public Set<Pizza> pizza;
 
     public User(){}
 
-    public User(String username, String email, String password, String firstName,
-                String lastName, long phoneNumber,
-                String street, String city, int zip, boolean enabled) {
+    public User(String username,
+                String email,
+                String password,
+                String firstName,
+                String lastName,
+                long phoneNumber,
+                String street,
+                String city,
+                int zip,
+                boolean enabled) {
         this.username = username;
         this.email = email;
         setPassword(password);
