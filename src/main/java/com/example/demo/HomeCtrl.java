@@ -36,6 +36,8 @@ public class HomeCtrl {
     @Autowired
     ToppingRepository toppingRepository;
 
+    Pizza confirmPizza;
+
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
         String username = principal.getName();
@@ -99,10 +101,25 @@ public class HomeCtrl {
             model.addAttribute("alltoppings", toppingRepository.findAll());
             return "order";
         } else {
-            pizzaRepository.save(pizza);
-            return "redirect:/";
+            confirmPizza = pizza;
+            return "redirect:/checkout";
         }
+    }
 
+    @GetMapping("/checkout")
+    public String checkout (Model model, Principal principal) {
+        model.addAttribute("pizza", confirmPizza);
+        String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
+        return "checkout";
+    }
+
+    @PostMapping("/checkout")
+    public String confirmCheckout (@ModelAttribute("pizza") Pizza pizza, Model model, Principal principal) {
+        pizzaRepository.save(confirmPizza);
+        String username = principal.getName();
+        userRepository.findByUsername(username).pizzas.add(confirmPizza);
+        return "redirect:/";
     }
 
     @RequestMapping("/menu")
