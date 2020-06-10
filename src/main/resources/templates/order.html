@@ -19,7 +19,7 @@
             Name: <input type="text" th:value="Custom" placeholder="Custom" th:field="*{name}"/>
             <span th:if="${#fields.hasErrors('name')}"
                   th:errors="*{name}"></span></li>
-        <li>Sauce: <input type="radio" id="tomato" th:field="*{sauce}" th:value="Classic"/>
+        <li>Sauce: <input type="radio" id="tomato" th:field="*{sauce}" th:value="Tomato"/>
             <label for="tomato">Classic Tomato</label>
             <input type="radio" id="bbq" th:field="*{sauce}" th:value="BBQ"/>
             <label for="bbq">BBQ</label>
