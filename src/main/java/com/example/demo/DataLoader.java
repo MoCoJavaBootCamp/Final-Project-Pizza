@@ -48,6 +48,7 @@ public class DataLoader implements CommandLineRunner {
         Pizza pizza;
         pizza = new Pizza();
         pizza.setName("Meat Lovers");
+        pizza.setSauce("Classic Tomato");
         pizza.setToppings(toppings);
         pizza.setPrice(pizza.getPrice());
         pizzaRepository.save(pizza);
@@ -59,6 +60,7 @@ public class DataLoader implements CommandLineRunner {
         toppings.add(toppingRepository.findToppingByName("Onion"));
         pizza = new Pizza();
         pizza.setName("Veggie");
+        pizza.setSauce("Classic Tomato");
         pizza.setToppings(toppings2);
         pizza.setPrice(pizza.getPrice());
         pizzaRepository.save(pizza);
