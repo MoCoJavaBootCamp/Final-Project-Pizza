@@ -7,8 +7,29 @@
 
 <body>
 <div th:insert="components :: navbar"></div>
+<h2>Pizza Permutations: </h2>
 
-Top selections
+<div>
+    <h4>Pepperoni:</h4>
+    <p>Cheese, pepperoni, and traditional tomato sauce. An American Classic.</p>
+    <form action="#" th:action="@{/menu}" th:object="${pizza}" method="post">
+        <input type="hidden" th:field="*{user}" th:value="${user}"/>
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{name}" th:value="Pepperoni"/>
+        <span th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"></span></li>
+        <input type="hidden" th:field="*{sauce}" th:value="Tomato"/>
+        <span th:if="${#fields.hasErrors('sauce')}"
+              th:errors="*{sauce}"></span>
+        <input type="hidden" th:field="*{toppings}" th:value="${topping.id}"/>
+
+
+
+        <input type="submit" value="Order"/>
+    </form>
+</div>
+
+
 
 <div th:insert="components :: scripts"></div>
 </body>
