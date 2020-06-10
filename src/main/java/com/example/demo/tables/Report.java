@@ -60,11 +60,4 @@ public class Report {
         this.topToppings = topToppings;
     }
 
-    //Report Generation Options
-
-    //list all customers
-    //list customer by name
-    //list top 3 toppings
-    //total sales
-
 }
