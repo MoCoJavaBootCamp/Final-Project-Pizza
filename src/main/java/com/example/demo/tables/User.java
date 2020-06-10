@@ -64,7 +64,6 @@ public class User {
 
     public User(){}
 
-
     public User(
                 String username,
                 String password,
@@ -174,4 +173,5 @@ public class User {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
 }
