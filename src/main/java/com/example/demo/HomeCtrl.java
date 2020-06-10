@@ -102,6 +102,7 @@ public class HomeCtrl {
             return "order";
         } else {
             confirmPizza = pizza;
+            System.out.println(confirmPizza.toString());
             return "redirect:/checkout";
         }
     }
@@ -122,12 +123,23 @@ public class HomeCtrl {
         return "redirect:/";
     }
 
-    @RequestMapping("/menu")
-    public String menu(Model model) {
+    @GetMapping("/menu")
+    public String menu(Model model, Principal principal) {
+        String username = principal.getName();
         model.addAttribute("specialtypizzas",
                 pizzaRepository.findPizzasBySpecialtyTrue());
+        model.addAttribute("spPizza", new Pizza());
+        model.addAttribute("user", userRepository.findByUsername(username));
         return "menu";
     }
+
+    @PostMapping("/menu")
+    public String processMenu(@ModelAttribute("spPizza") Pizza pizza) {
+        confirmPizza = pizza;
+        System.out.println(confirmPizza.toString());
+        return "redirect:/checkout";
+    }
+
     
 
     /* === ADMIN ROUTES === */

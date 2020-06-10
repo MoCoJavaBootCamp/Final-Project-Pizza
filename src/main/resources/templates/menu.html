@@ -11,10 +11,22 @@
 <h2>Specialty Pizzas</h2>
 
 <div th:each="pizza : ${specialtypizzas}">
-    <p th:text="${pizza.name}"></p>
-    <p th:each="topping : ${pizza.toppings}">
-        <span th:inline="text">[[${topping.name}]]</span>
-    </p>
+    <form action="#" th:action="@{/menu}" th:object="${spPizza}" method="post">
+        <h5 th:text="${pizza.name}"></h5>
+        <h6>[[${pizza.sauce}]]</h6>
+        <h6>Toppings:</h6>
+        <ul th:each="topping : ${pizza.toppings}">
+            <li>[[${topping.name}]]</li>
+            <input type="hidden" th:field="*{toppings}"/>
+        </ul>
+
+        <input type="hidden" th:field="*{user}"/>
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{name}"/>
+        <input type="hidden" th:field="*{sauce}"/>
+        <input type="hidden" th:field="*{name}"/>
+        <input type="submit" value="Order"/>
+    </form>
 </div>
 
 <div th:insert="components :: scripts"></div>
