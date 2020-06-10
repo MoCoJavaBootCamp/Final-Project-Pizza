@@ -114,4 +114,17 @@ public class Pizza {
         return toppings.size();
     }
 
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "id=" + id +
+                ", price=" + price +
+                ", date=" + date +
+                ", sauce='" + sauce + '\'' +
+                ", name='" + name + '\'' +
+                ", specialty=" + specialty +
+                ", toppings=" + toppings +
+                ", user=" + user +
+                '}';
+    }
 }
