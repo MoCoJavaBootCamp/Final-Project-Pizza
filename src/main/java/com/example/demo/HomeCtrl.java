@@ -105,6 +105,9 @@ public class HomeCtrl {
 
     }
 
+    @RequestMapping("/menu")
+    public String menu() {return "menu";}
+
     
 
     /* === ADMIN ROUTES === */
