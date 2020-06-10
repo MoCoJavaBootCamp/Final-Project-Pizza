@@ -92,9 +92,17 @@ public class HomeCtrl {
     }
 
     @PostMapping("/order")
-    public String processOrder(@ModelAttribute Pizza pizza) {
-        pizzaRepository.save(pizza);
-        return "redirect:/";
+    public String processOrder(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result, Model model, Principal principal) {
+        if (result.hasErrors()) {
+            String username = principal.getName();
+            model.addAttribute("user", userRepository.findByUsername(username));
+            model.addAttribute("alltoppings", toppingRepository.findAll());
+            return "order";
+        } else {
+            pizzaRepository.save(pizza);
+            return "redirect:/";
+        }
+
     }
 
     
