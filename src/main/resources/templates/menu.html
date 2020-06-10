@@ -21,7 +21,7 @@
         <input type="hidden" th:field="*{sauce}" th:value="Tomato"/>
         <span th:if="${#fields.hasErrors('sauce')}"
               th:errors="*{sauce}"></span>
-        <input type="hidden" th:field="*{toppings}" th:value="${topping.id}"/>
+        <input type="hidden" th:field="*{toppings}" th:value="${}"/>
 
 
 
