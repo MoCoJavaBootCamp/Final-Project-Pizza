@@ -60,7 +60,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
     fetch = FetchType.EAGER)
-    public Set<Pizza> pizza;
+    public Set<Pizza> pizzas;
 
     public User(){}
 
@@ -159,12 +159,12 @@ public class User {
         this.zip = zip;
     }
 
-    public Set<Pizza> getPizza() {
-        return pizza;
+    public Set<Pizza> getPizzas() {
+        return pizzas;
     }
 
-    public void setPizza(Set<Pizza> pizza) {
-        this.pizza = pizza;
+    public void setPizzas(Set<Pizza> pizza) {
+        this.pizzas = pizza;
     }
 
     public boolean isEnabled() {
