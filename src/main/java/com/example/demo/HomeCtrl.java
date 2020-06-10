@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -147,26 +148,24 @@ public class HomeCtrl {
 
     @PostMapping("/checkout")
     public String confirmCheckout (@ModelAttribute("pizza") Pizza pizza, Model model, Principal principal) {
+        confirmPizza.setDate(LocalDateTime.now());
         pizzaRepository.save(confirmPizza);
         String username = principal.getName();
         userRepository.findByUsername(username).pizzas.add(confirmPizza);
         return "redirect:/";
     }
 
-    @GetMapping("/menu")
-    public String menu(Model model, Principal principal) {
-        String username = principal.getName();
+    @RequestMapping("/menu")
+    public String menu(Model model) {
         model.addAttribute("specialtypizzas",
                 pizzaRepository.findPizzasBySpecialtyTrue());
-        model.addAttribute("spPizza", new Pizza());
-        model.addAttribute("user", userRepository.findByUsername(username));
         return "menu";
     }
 
-    @PostMapping("/menu")
-    public String processMenu(@ModelAttribute("spPizza") Pizza pizza) {
-        confirmPizza = pizza;
-        System.out.println(confirmPizza.toString());
+    @RequestMapping("/orderSpecial/{id}")
+    public String orderSpecial(@PathVariable("id") long id, Model model) {
+        confirmPizza = pizzaRepository.findById(id).get();
+        System.out.println(confirmPizza);
         return "redirect:/checkout";
     }
 

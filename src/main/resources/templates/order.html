@@ -14,6 +14,7 @@
 <form action="#" th:action="@{/order}" th:object="${pizza}" method="post">
     <input type="hidden" th:field="*{user}" th:value="${user}"/>
     <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="*{date}"/>
     <ol>
         <li>
             Name: <input type="text" th:value="Custom" placeholder="Custom" th:field="*{name}"/>

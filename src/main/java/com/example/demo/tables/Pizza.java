@@ -1,10 +1,15 @@
 package com.example.demo.tables;
 
 import com.sun.istack.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Set;
 
 @Entity
@@ -36,6 +41,7 @@ public class Pizza {
     public Pizza() {
         this.specialty = false;
         this.price = 10.25;
+        this.date = LocalDateTime.now();
     }
 
     //Getters and Setters
@@ -114,12 +120,18 @@ public class Pizza {
         return toppings.size();
     }
 
+    public String printDate() {
+        String pattern = "hh:mm a";
+        String dateString = this.date.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
+        return dateString;
+    }
+
     @Override
     public String toString() {
         return "Pizza{" +
                 "id=" + id +
                 ", price=" + price +
-                ", date=" + date +
+                ", date=" + this.printDate() +
                 ", sauce='" + sauce + '\'' +
                 ", name='" + name + '\'' +
                 ", specialty=" + specialty +
