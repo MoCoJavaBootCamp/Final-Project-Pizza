@@ -123,8 +123,11 @@ public class HomeCtrl {
     }
 
     @RequestMapping("/menu")
-    public String menu() {return "menu";}
-
+    public String menu(Model model) {
+        model.addAttribute("specialtypizzas",
+                pizzaRepository.findPizzasBySpecialtyTrue());
+        return "menu";
+    }
     
 
     /* === ADMIN ROUTES === */

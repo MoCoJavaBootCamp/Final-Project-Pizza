@@ -8,7 +8,16 @@
 <body>
 <div th:insert="components :: navbar"></div>
 
-Top selections
+<h2>Specialty Pizzas</h2>
+
+<div th:each="pizza : ${specialtypizzas}">
+    <p th:text="${pizza.name}"></p>
+    <p th:each="topping : ${pizza.toppings}">
+        <span th:inline="text">[[${topping.name}]]</span>
+    </p>
+</div>
+
+<div th:insert="components :: scripts"></div>
 
 <div th:insert="components :: scripts"></div>
 </body>

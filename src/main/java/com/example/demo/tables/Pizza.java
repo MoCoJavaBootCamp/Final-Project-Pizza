@@ -17,13 +17,13 @@ public class Pizza {
 
     private LocalDateTime date;
 
-    @NotNull
-    @NotEmpty
     private String sauce;
 
     @NotNull
     @NotEmpty
     private String name;
+
+    private boolean specialty;
 
     @ManyToMany
     private Set<Topping> toppings;
@@ -34,6 +34,7 @@ public class Pizza {
 
     //Constructors
     public Pizza() {
+        this.specialty = false;
         this.price = 10.25;
     }
 
@@ -60,6 +61,12 @@ public class Pizza {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean isSpecialty() {return specialty; }
+
+    public void setSpecialty(boolean specialty) {
+        this.specialty = specialty;
     }
 
     public LocalDateTime getDate() {
@@ -106,6 +113,5 @@ public class Pizza {
     public int findNumToppings() {
         return toppings.size();
     }
-
 
 }
