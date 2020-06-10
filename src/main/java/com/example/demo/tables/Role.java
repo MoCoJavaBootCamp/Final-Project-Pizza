@@ -1,6 +1,7 @@
 package com.example.demo.tables;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="roles")
@@ -14,6 +15,7 @@ public class Role {
 
     @Column(name="role")
     private String role;
+
 
     public Role(){}
 
@@ -45,4 +47,5 @@ public class Role {
     public void setRole(String role) {
         this.role = role;
     }
+
 }
