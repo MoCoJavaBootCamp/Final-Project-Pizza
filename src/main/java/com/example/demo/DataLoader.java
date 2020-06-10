@@ -48,28 +48,8 @@ public class DataLoader implements CommandLineRunner {
         topping = new Topping("Mushrooms");
         toppingRepository.save(topping);
 
-        Set<Topping> toppings = new HashSet<>();
-        toppings.add(toppingRepository.findToppingByName("Pepperoni"));
-        toppings.add(toppingRepository.findToppingByName("Sausage"));
-        toppings.add(toppingRepository.findToppingByName("Chicken"));
-        toppings.add(toppingRepository.findToppingByName("Bacon"));
         Pizza pizza;
-        pizza = new Pizza();
-        pizza.setName("Meat Lovers");
-        pizza.setToppings(toppings);
-        pizza.setPrice(pizza.getPrice());
-        pizzaRepository.save(pizza);
 
-        Set<Topping> toppings2 = new HashSet<>();
-        toppings.add(toppingRepository.findToppingByName("Olives"));
-        toppings.add(toppingRepository.findToppingByName("Green Peppers"));
-        toppings.add(toppingRepository.findToppingByName("Pineapples"));
-        toppings.add(toppingRepository.findToppingByName("Onions"));
-        pizza = new Pizza();
-        pizza.setName("Veggie");
-        pizza.setToppings(toppings2);
-        pizza.setPrice(pizza.getPrice());
-        pizzaRepository.save(pizza);
 
         /* === SPECIALTY PIZZAS === */
 
@@ -80,14 +60,43 @@ public class DataLoader implements CommandLineRunner {
         pizza.setSauce("Classic Tomato");
 
         Set<Topping> toppings3 = new HashSet<>();
-        toppings.add(toppingRepository.findToppingByName("Spicy Italian Sausage"));
-        toppings.add(toppingRepository.findToppingByName("Pepperoni"));
-        toppings.add(toppingRepository.findToppingByName("Canadian Bacon"));
-        toppings.add(toppingRepository.findToppingByName("Green Peppers"));
-        toppings.add(toppingRepository.findToppingByName("Olives"));
-        toppings.add(toppingRepository.findToppingByName("Onions"));
+        toppings3.add(toppingRepository.findToppingByName("Spicy Italian Sausage"));
+        toppings3.add(toppingRepository.findToppingByName("Pepperoni"));
+        toppings3.add(toppingRepository.findToppingByName("Canadian Bacon"));
+        toppings3.add(toppingRepository.findToppingByName("Green Peppers"));
+        toppings3.add(toppingRepository.findToppingByName("Olives"));
+        toppings3.add(toppingRepository.findToppingByName("Onions"));
 
         pizza.setToppings(toppings3);
+        pizza.setPrice(pizza.getPrice());
+        pizzaRepository.save(pizza);
+
+        //Veggie
+        Set<Topping> toppings2 = new HashSet<>();
+        toppings2.add(toppingRepository.findToppingByName("Olives"));
+        toppings2.add(toppingRepository.findToppingByName("Green Peppers"));
+        toppings2.add(toppingRepository.findToppingByName("Pineapples"));
+        toppings2.add(toppingRepository.findToppingByName("Onions"));
+        pizza = new Pizza();
+        pizza.setSpecialty(true);
+        pizza.setName("Veggie");
+        pizza.setSauce("Tomato");
+        pizza.setToppings(toppings2);
+        pizza.setPrice(pizza.getPrice());
+        pizzaRepository.save(pizza);
+
+        //Meat Lovers
+        Set<Topping> toppings = new HashSet<>();
+        toppings.add(toppingRepository.findToppingByName("Pepperoni"));
+        toppings.add(toppingRepository.findToppingByName("Sausage"));
+        toppings.add(toppingRepository.findToppingByName("Chicken"));
+        toppings.add(toppingRepository.findToppingByName("Bacon"));
+
+        pizza = new Pizza();
+        pizza.setSpecialty(true);
+        pizza.setSauce("Tomato");
+        pizza.setName("Meat Lovers");
+        pizza.setToppings(toppings);
         pizza.setPrice(pizza.getPrice());
         pizzaRepository.save(pizza);
 
