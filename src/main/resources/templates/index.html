@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Welcome Page</title>
+    <div th:insert="components :: meta-links"></div>
+    <title>PizzaPizza Home</title>
 </head>
-<body>
-<h1>Welcome Page</h1>
 
-<a href="/admin">Admin Page</a> <br/>
-
+<<<<<<< HEAD
 
 Sign up to order
 <a th:href="register">Sign up</a>
@@ -19,6 +16,11 @@ Sign up to order
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Logout">
 </form>
+=======
+<body>
+<div th:insert="components :: navbar"></div>
+>>>>>>> eb6d85eca4653fce299a42dc37b8404b0e404b45
 
+<div th:insert="components :: scripts"></div>
 </body>
 </html>

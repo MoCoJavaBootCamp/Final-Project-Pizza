@@ -1,65 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin</title>
+    <div th:insert="components :: meta-links"></div>
+    <title>PizzaPizza ADMIN</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
-<div th:replace="base :: navlinks"></div>
 
-<h1>Admin</h1>
+<div th:insert="components :: navbar"></div>
 
-<h3>Reports</h3>
+<h1>Admin Page</h1>
+
+<h4>Reports</h4>
+<h6>Find by user</h6>
+
+<input class="form-control" id="myInput" type="text" placeholder="Search">
 
 <h5>List all users by email</h5>
 
-<table>
-    <thead>
-    <tr>
-        <th scope="col">Email</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
+<div class="card-columns">
+    <div class="card">
+        <div class="card-body">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${allusers}">
-        <td th:text="${user.username}"></td>
-        <td th:text="${user.firstName}"></td>
-        <td th:text="${user.lastName}"></td>
-    </tr>
-    </tbody>
-</table>
-
-<h5>Find by user</h5>
-<form th:action="@{/search}" th:object="${user}" method="get">
-    insert user:
-    <input type="text" name="keyword">
-
-    <input type="submit" value="Search">
-    <div>
-        <table>
-            <tr>
-<!--                <td th:inline="text">[[${user.username}]]</td>-->
-<!--                <td th:text="${user.firstName}"></td>-->
-            </tr>
-        </table>
+                </tr>
+                </thead>
+                <tbody id="usertable">
+                <tr th:each="user : ${allusers}">
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <div class="card p-3">
+        <h5>List top 3 toppings</h5>
 
-</form>
-
-
-
-<h5>List top 3 toppings</h5>
-
-<div th:each="topping : ${toptoppings}">
-    <p th:text="${topping.name}"></p>
+        <div th:each="topping : ${toptoppings}">
+            <p th:text="${topping.name}"></p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h5>List total sales</h5>
+            <div th:text="${totalsales}"></div>
+        </div>
+    </div>
+    <div class="card bg-primary p-3 text-center">
+        <h5>List total sales</h5>
+        <div th:text="${totalsales}"></div>
+    </div>
 </div>
 
-<h5>List total sales</h5>
-<div th:text="${totalcost}"></div>
 
-<div th:replace="base :: footer"></div>
+
+
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
+
+
+<script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup",function () {
+            var value= $(this).val().toLowerCase();
+            $("#usertable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)
+            });
+        });
+    });
+</script>
+
+<div th:insert="components :: scripts"></div>
+
 
 </body>
 </html>

@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.HashSet;
@@ -38,6 +39,8 @@ public class HomeCtrl {
 
     @Autowired
     ToppingRepository toppingRepository;
+
+    Pizza confirmPizza;
 
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
@@ -110,19 +113,66 @@ public class HomeCtrl {
         return "redirect:/login?logout=true";
     }
 
+    @GetMapping("/order")
+    public String order(Model model, Principal principal) {
+        model.addAttribute("pizza", new Pizza());
+        String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
+        model.addAttribute("alltoppings", toppingRepository.findAll());
+
+        return "order";
+    }
+
+    @PostMapping("/order")
+    public String processOrder(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result, Model model, Principal principal) {
+        if (result.hasErrors()) {
+            String username = principal.getName();
+            model.addAttribute("user", userRepository.findByUsername(username));
+            model.addAttribute("alltoppings", toppingRepository.findAll());
+            return "order";
+        } else {
+            confirmPizza = pizza;
+            return "redirect:/checkout";
+        }
+    }
+
+    @GetMapping("/checkout")
+    public String checkout (Model model, Principal principal) {
+        model.addAttribute("pizza", confirmPizza);
+        String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
+        return "checkout";
+    }
+
+    @PostMapping("/checkout")
+    public String confirmCheckout (@ModelAttribute("pizza") Pizza pizza, Model model, Principal principal) {
+        pizzaRepository.save(confirmPizza);
+        String username = principal.getName();
+        userRepository.findByUsername(username).pizzas.add(confirmPizza);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/menu")
+    public String menu(Model model) {
+        model.addAttribute("specialtypizzas",
+                pizzaRepository.findPizzasBySpecialtyTrue());
+        return "menu";
+    }
     
 
     /* === ADMIN ROUTES === */
     @RequestMapping("/admin")
     public String admin(Model model) {
-        double totalcost = 0.00;
+        double totalsales = 0.00;
         Set<Pizza> allpizzas = pizzaRepository.findAll();
         for (Pizza pizza : allpizzas) {
-            totalcost += pizza.getPrice();
+            totalsales += pizza.getPrice();
         }
-        model.addAttribute("allroles", roleRepository.findAll());
+        String totalSalesStr = String.format("%.2f", totalsales);
+        totalSalesStr = "$" + totalSalesStr;
+
         model.addAttribute("allusers", userRepository.findAll());
-        model.addAttribute("totalcost", totalcost);
+        model.addAttribute("totalsales", totalSalesStr);
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());
         return "admin";
