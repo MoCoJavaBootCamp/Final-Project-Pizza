@@ -106,29 +106,6 @@ public class HomeCtrl {
         }
     }
 
-    @GetMapping("/menu")
-    public String menu(Model model, Principal principal) {
-        model.addAttribute("pizza", new Pizza());
-        String username = principal.getName();
-        model.addAttribute("user", userRepository.findByUsername(username));
-        model.addAttribute("alltoppings", toppingRepository.findAll());
-
-        return "menu";
-    }
-
-    @PostMapping("/menu")
-    public String processsMenu(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result, Model model, Principal principal) {
-        if (result.hasErrors()) {
-            String username = principal.getName();
-            model.addAttribute("user", userRepository.findByUsername(username));
-            model.addAttribute("alltoppings", toppingRepository.findAll());
-            return "menu";
-        } else {
-            confirmPizza = pizza;
-            return "redirect:/checkout";
-        }
-    }
-
     @GetMapping("/checkout")
     public String checkout (Model model, Principal principal) {
         model.addAttribute("pizza", confirmPizza);
@@ -145,8 +122,12 @@ public class HomeCtrl {
         return "redirect:/";
     }
 
-
-
+    @RequestMapping("/menu")
+    public String menu(Model model) {
+        model.addAttribute("specialtypizzas",
+                pizzaRepository.findPizzasBySpecialtyTrue());
+        return "menu";
+    }
     
 
     /* === ADMIN ROUTES === */
