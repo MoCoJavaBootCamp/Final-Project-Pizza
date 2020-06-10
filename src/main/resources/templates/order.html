@@ -1,11 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Order</title>
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/060e8bc0c6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
 </head>
 <body>
 <h1>Craft your own or choose from the menu</h1>
 <a th:href="menu">Menu</a>
+<h5>Current User: [[${user.firstName}]]</h5>
+<form action="#" th:action="@{/order}" th:object="${pizza}" method="post">
+    <input type="hidden" th:field="*{user}" th:value="${user}"/>
+    <input type="hidden" th:field="*{id}"/>
+    <ol>
+        <li>
+            Name: <input type="text" th:value="Custom" placeholder="Custom" th:field="*{name}"/>
+            <span th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}"></span></li>
+        <li>Sauce: <input type="radio" id="tomato" th:field="*{sauce}" th:value="Classic"/>
+            <label for="tomato">Classic Tomato</label>
+            <input type="radio" id="bbq" th:field="*{sauce}" th:value="BBQ"/>
+            <label for="bbq">BBQ</label>
+            <input type="radio" id="alfredo" th:field="*{sauce}" th:value="Alfredo"/>
+            <label for="alfredo">Alfredo</label>
+            <span th:if="${#fields.hasErrors('sauce')}"
+                  th:errors="*{sauce}"></span>
+        </li>
+        <li>
+            Toppings:
+            <div th:each="topping : ${alltoppings}">
+                <input type="checkbox" id="${topping.id}" th:field="*{toppings}" th:value="${topping.id}"/>
+                <label for="${topping.id}">[[${topping.name}]]</label>
+            </div>
+        </li>
+    </ol>
+    <input type="submit" value="Submit"/>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

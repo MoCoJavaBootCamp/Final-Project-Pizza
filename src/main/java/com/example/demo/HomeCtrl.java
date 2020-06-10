@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +79,30 @@ public class HomeCtrl {
     @RequestMapping("/logout")
     public String logout() {
         return "redirect:/login?logout=true";
+    }
+
+    @GetMapping("/order")
+    public String order(Model model, Principal principal) {
+        model.addAttribute("pizza", new Pizza());
+        String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
+        model.addAttribute("alltoppings", toppingRepository.findAll());
+
+        return "order";
+    }
+
+    @PostMapping("/order")
+    public String processOrder(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result, Model model, Principal principal) {
+        if (result.hasErrors()) {
+            String username = principal.getName();
+            model.addAttribute("user", userRepository.findByUsername(username));
+            model.addAttribute("alltoppings", toppingRepository.findAll());
+            return "order";
+        } else {
+            pizzaRepository.save(pizza);
+            return "redirect:/";
+        }
+
     }
 
     

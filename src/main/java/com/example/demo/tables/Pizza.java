@@ -19,6 +19,10 @@ public class Pizza {
 
     @NotNull
     @NotEmpty
+    private String sauce;
+
+    @NotNull
+    @NotEmpty
     private String name;
 
     @ManyToMany
@@ -64,6 +68,14 @@ public class Pizza {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getSauce() {
+        return sauce;
+    }
+
+    public void setSauce(String sauce) {
+        this.sauce = sauce;
     }
 
     public String getName() {
