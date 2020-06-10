@@ -1,6 +1,5 @@
 package com.example.demo.tables;
 
-import com.example.demo.tables.Pizza;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
