@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ToppingRepository extends CrudRepository<Topping, Long> {
     List<Topping> findTop3ByCountIsNotNullOrderByCountDesc();
+    Topping findToppingByName(String topping);
 }

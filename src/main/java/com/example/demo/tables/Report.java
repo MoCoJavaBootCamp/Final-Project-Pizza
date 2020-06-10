@@ -1,8 +1,5 @@
 package com.example.demo.tables;
 
-import com.example.demo.tables.Topping;
-import com.example.demo.tables.User;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;

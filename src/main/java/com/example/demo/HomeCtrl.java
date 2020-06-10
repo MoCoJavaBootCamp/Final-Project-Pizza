@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.repository.*;
+import com.example.demo.tables.Pizza;
 import com.example.demo.tables.Role;
 import com.example.demo.tables.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,13 +80,21 @@ public class HomeCtrl {
         return "redirect:/login?logout=true";
     }
 
+    
+
     /* === ADMIN ROUTES === */
     @RequestMapping("/admin")
     public String admin(Model model) {
+        double totalcost = 0.00;
+        Set<Pizza> allpizzas = pizzaRepository.findAll();
+        for (Pizza pizza : allpizzas) {
+            totalcost += pizza.getPrice();
+        }
+
         model.addAttribute("allusers", userRepository.findAll());
+        model.addAttribute("totalcost", totalcost);
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());
         return "admin";
     }
-
 }
