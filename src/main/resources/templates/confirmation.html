@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="components :: meta-links"></div>
+    <title>Thank You!</title>
+</head>
+
+<body>
+<h1>Thank you for your purchase! Your order is being processed now.</h1>
+<h2>Your Order:</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Time</th>
+        <th>Sauce</th>
+        <th>Toppings</th>
+        <th>Price</th>
+    </tr>
+    <tr>
+        <td>[[${pizza.name}]]</td>
+        <td>[[${pizza.date}]]</td>
+        <td>[[${pizza.sauce}]]</td>
+        <td>
+            <ul th:each="topping : ${pizza.toppings}">
+               <li>[[${topping.name}]]</li>
+            </ul>
+        </td>
+        <td>[[${pizza.price}]]</td>
+    </tr>
+</table>
+<a th:href="@{/}"><h3>Back to the Home Page</h3></a>
+</body>
+</html>

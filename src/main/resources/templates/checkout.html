@@ -11,24 +11,38 @@
 </head>
 <body>
 <h3>Checkout:</h3>
-<div>
-    Name: [[${pizza.name}]]
-</div>
-<div>
-    <h6>Order Details:</h6>
-</div>
-<div>
-    Sauce: [[${pizza.sauce}]]
-</div>
-<div>
-    Toppings:
-    <ul th:each="topping : ${pizza.toppings}">
-        <li>[[${topping.name}]]</li>
-    </ul>
-</div>
-<div>
-    Total Price: [[${pizza.price}]]
-</div>
+<h5>Order Name: [[${pizza.name}]]</h5>
+<table>
+    <tr>
+        <th>Base Price</th>
+        <th></th>
+        <th>10.25</th>
+    </tr>
+    <tr>
+        <th>Sauce</th>
+        <td>[[${pizza.sauce}]]</td>
+        <td>--</td>
+    </tr>
+    <tr>
+        <th>Toppings:</th>
+    </tr>
+    <tr th:each="topping,iter : ${pizza.toppings}">
+        <td></td>
+        <td>[[${topping.name}]]</td>
+        <span th:if="${iter.index > 1}">
+            <td>0.50</td>
+        </span>
+        <span th:unless="${iter.index > 1}">
+            <td>--</td>
+        </span>
+    </tr>
+    <tr>
+        <td>Total Price: </td>
+        <td></td>
+        <td>[[${pizza.price}]]</td>
+    </tr>
+</table>
+
 <form action="#" th:action="@{/checkout}" th:object="${pizza}" method="post">
     <input type="submit" value="Confirm Order"/>
 </form>

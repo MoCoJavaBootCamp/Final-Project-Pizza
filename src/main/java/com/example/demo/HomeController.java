@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -117,6 +118,7 @@ public class HomeController {
         return "order";
     }
 
+    //ctrl might be confused with get/post routes
     @PostMapping("/order")
     public String processOrder(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result, Model model, Principal principal) {
         if (result.hasErrors()) {
@@ -141,33 +143,54 @@ public class HomeController {
 
     @PostMapping("/checkout")
     public String confirmCheckout (@ModelAttribute("pizza") Pizza pizza, Model model, Principal principal) {
-        pizzaRepository.save(confirmPizza);
         String username = principal.getName();
-        userRepository.findByUsername(username).pizzas.add(confirmPizza);
+        confirmPizza.setUser(userRepository.findByUsername(username));
+        confirmPizza.setDate(LocalDateTime.now());
+        pizzaRepository.save(confirmPizza);
+        User user = userRepository.findByUsername(username);
+        Set<Pizza> pizzas = user.getPizzas();
+        pizzas.add(confirmPizza);
+        user.setPizzas(pizzas);
+        userRepository.save(user);
         return "redirect:/";
     }
 
-    @GetMapping("/menu")
-    public String menu(Model model, Principal principal) {
-        String username = principal.getName();
+    @RequestMapping("/menu")
+    public String menu(Model model) {
         model.addAttribute("specialtypizzas",
                 pizzaRepository.findPizzasBySpecialtyTrue());
-        model.addAttribute("spPizza", new Pizza());
-        model.addAttribute("user", userRepository.findByUsername(username));
         return "menu";
     }
 
-    @PostMapping("/menu")
-    public String processMenu(@ModelAttribute("spPizza") Pizza pizza) {
-        confirmPizza = pizza;
-        System.out.println(confirmPizza.toString());
+    @RequestMapping("/orderSpecial/{id}")
+    public String orderSpecial(@PathVariable("id") long id, Model model) {
+        confirmPizza = pizzaRepository.findById(id).get();
+        System.out.println(confirmPizza);
         return "redirect:/checkout";
     }
+
 
     @RequestMapping("/delete/{id}")
     public String deleteTopping(@PathVariable("id") long id) {
         toppingRepository.deleteById(id);
         return "redirect:/";
+    }
+
+
+    @RequestMapping("/orderhistory")
+    public String orderHistory(Model model, Principal principal) {
+        String username = principal.getName();
+        Set<Pizza> allpizzasbyuser = pizzaRepository.findAllByUserUsername(username);
+
+        model.addAttribute("pizzaorderhistory", allpizzasbyuser);
+        return "orderhistory";
+    }
+
+    @RequestMapping("/confirmation")
+    public String confirmation(@ModelAttribute("pizza") Pizza pizza, Model model) {
+        model.addAttribute("pizza", pizza);
+        System.out.println(pizza.toString());
+        return "confirmation";
     }
 
     
