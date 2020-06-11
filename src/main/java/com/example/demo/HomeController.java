@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.repository.*;
 import com.example.demo.tables.Pizza;
 import com.example.demo.tables.Role;
+import com.example.demo.tables.Topping;
 import com.example.demo.tables.User;
 import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.beans.factory.annotation.Autowired;
