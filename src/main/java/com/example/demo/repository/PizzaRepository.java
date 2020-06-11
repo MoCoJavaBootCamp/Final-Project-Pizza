@@ -10,4 +10,5 @@ import java.util.Set;
 public interface PizzaRepository extends CrudRepository<Pizza, Long> {
     Set<Pizza> findAll();
     Set<Pizza> findPizzasBySpecialtyTrue();
+    Set<Pizza> findAllByUserUsername(String username);
 }
