@@ -124,6 +124,7 @@ public class HomeCtrl {
         return "order";
     }
 
+    //ctrl might be confused with get/post routes
     @PostMapping("/order")
     public String processOrder(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result, Model model, Principal principal) {
         if (result.hasErrors()) {
@@ -148,10 +149,15 @@ public class HomeCtrl {
 
     @PostMapping("/checkout")
     public String confirmCheckout (@ModelAttribute("pizza") Pizza pizza, Model model, Principal principal) {
+        String username = principal.getName();
+        confirmPizza.setUser(userRepository.findByUsername(username));
         confirmPizza.setDate(LocalDateTime.now());
         pizzaRepository.save(confirmPizza);
-        String username = principal.getName();
-        userRepository.findByUsername(username).pizzas.add(confirmPizza);
+        User user = userRepository.findByUsername(username);
+        Set<Pizza> pizzas = user.getPizzas();
+        pizzas.add(confirmPizza);
+        user.setPizzas(pizzas);
+        userRepository.save(user);
         return "redirect:/";
     }
 
@@ -169,6 +175,21 @@ public class HomeCtrl {
         return "redirect:/checkout";
     }
 
+    @RequestMapping("/orderhistory")
+    public String orderHistory(Model model, Principal principal) {
+        String username = principal.getName();
+        Set<Pizza> allpizzasbyuser = pizzaRepository.findAllByUserUsername(username);
+
+        model.addAttribute("pizzaorderhistory", allpizzasbyuser);
+        return "orderhistory";
+    }
+
+    @RequestMapping("/confirmation")
+    public String confirmation(@ModelAttribute("pizza") Pizza pizza, Model model) {
+        model.addAttribute("pizza", pizza);
+        System.out.println(pizza.toString());
+        return "confirmation";
+    }
     
 
     /* === ADMIN ROUTES === */

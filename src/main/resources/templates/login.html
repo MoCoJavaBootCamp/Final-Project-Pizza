@@ -7,10 +7,10 @@
 <body>
 <div th:insert="components :: navbar"></div>
 
-<h1>Sign In</h1>
+<h1 class="w-25 mx-auto">Sign In</h1>
 <div th:if="${param.error}">Invalid username or password</div>
 
-<form th:action="@{/login}" method="post">
+<form th:action="@{/login}" method="post" class="w-25 mx-auto" >
     <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
@@ -21,7 +21,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<a class="dropdown-item" href="#" th:href="@{/register}">New around here? <br/>Click here to register.</a>
+<a class="dropdown-item w-25 mx-auto" href="#" th:href="@{/register}">New around here? <br/>Click here to register.</a>
 
 <div th:insert="components :: scripts"></div>
 </body>
