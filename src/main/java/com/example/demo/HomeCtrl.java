@@ -169,6 +169,17 @@ public class HomeCtrl {
         return "redirect:/checkout";
     }
 
+    @RequestMapping("/orderhistory")
+    public String orderHistory(Model model, Principal principal) {
+        String username = principal.getName();
+        Set<Pizza> pizzas = pizzaRepository.findAllByUserUsername(username);
+        Set<Pizza> allpizzas = pizzaRepository.findAll();
+        System.out.println("username: " + username);
+        System.out.println("pizza set: " + pizzas);
+        System.out.println("all pizza set: " + allpizzas);
+        model.addAttribute("pizzaorderhistory", allpizzas);
+        return "orderhistory";
+    }
     
 
     /* === ADMIN ROUTES === */

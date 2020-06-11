@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <div th:insert="components :: meta-links"></div>
+    <title>PizzaPizza Order History</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div th:insert="components :: navbar"></div>
+
+<h1>Order History</h1>
+
+<input class="form-control myInput" type="text" placeholder="Search">
+
+<div class="card-columns">
+    <div class="card">
+        <div class="card-body">
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                </tr>
+                </thead>
+                <tbody id="order-history-table">
+                <tr th:each="pizza : ${pizzaorderhistory}">
+                    <td th:text="${pizza.date}"></td>
+                    <td th:text="${pizza.name}"></td>
+                    <td th:text="${pizza.price}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<script>
+    $(document).ready(function(){
+        $(".myInput").on("keyup",function () {
+            var value= $(this).val().toLowerCase();
+            $("#order-history-table tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)
+            });
+        });
+    });
+</script>
+
+<div th:insert="components :: scripts"></div>
+
+</body>
+</html>
