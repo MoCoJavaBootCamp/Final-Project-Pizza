@@ -5,7 +5,6 @@ import com.example.demo.tables.Pizza;
 import com.example.demo.tables.Role;
 import com.example.demo.tables.User;
 import com.sipios.springsearch.anotation.SearchSpec;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -24,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-public class HomeCtrl {
+public class HomeController {
 
     @Autowired
     UserRepository userRepository;
@@ -87,19 +86,14 @@ public class HomeCtrl {
         return "index";
     }
 
-    @GetMapping("/search3")
-    public String search(@PathVariable("username") String username, Model model) {
-        User user = userRepository.findByUsername(username);
-        model.addAttribute("user", user);
-        return "admin";
-    }
+//    @GetMapping("/search3")
+//    public String search(@PathVariable("username") String username, Model model) {
+//        User user = userRepository.findByUsername(username);
+//        model.addAttribute("user", user);
+//        return "admin";
+//    }
 
-    @PostMapping("/search3")
-    public String search3(@ModelAttribute("keyword") String keyword, Model model){
-        model.addAttribute("user", userRepository.findByUsername(keyword));
-        return "search3";
 
-    }
 
     @RequestMapping("/")
     public String index() { return "index"; }
@@ -175,6 +169,14 @@ public class HomeCtrl {
         return "redirect:/checkout";
     }
 
+
+    @RequestMapping("/delete/{id}")
+    public String deleteTopping(@PathVariable("id") long id) {
+        toppingRepository.deleteById(id);
+        return "redirect:/";
+    }
+
+
     @RequestMapping("/orderhistory")
     public String orderHistory(Model model, Principal principal) {
         String username = principal.getName();
@@ -207,6 +209,7 @@ public class HomeCtrl {
         model.addAttribute("totalsales", totalSalesStr);
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());
+        model.addAttribute("toppings", toppingRepository.findAll());
         return "admin";
     }
 }
