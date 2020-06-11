@@ -187,7 +187,7 @@ public class User {
                 ", city='" + city + '\'' +
                 ", zip=" + zip +
                 ", enabled=" + enabled +
-                ", pizzas=" + pizzas +
+//                ", pizzas=" + pizzas +
                 '}';
     }
 }

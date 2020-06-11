@@ -120,7 +120,7 @@ public class HomeController {
     }
 
     //ctrl might be confused with get/post routes
-    @PostMapping("/order")
+    @PostMapping("/processorder")
     public String processOrder(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult result, Model model, Principal principal) {
         if (result.hasErrors()) {
             String username = principal.getName();
@@ -187,13 +187,12 @@ public class HomeController {
         return "orderhistory";
     }
 
-    @RequestMapping("/confirmation")
-    public String confirmation(@ModelAttribute("pizza") Pizza pizza, Model model) {
-        model.addAttribute("pizza", pizza);
-        System.out.println(pizza.toString());
-        return "confirmation";
-    }
-
+//    @RequestMapping("/confirmation")
+//    public String confirmation(@ModelAttribute("pizza") Pizza pizza, Model model) {
+//        model.addAttribute("pizza", pizza);
+//        System.out.println(pizza.toString());
+//        return "confirmation";
+//    }
     
 
     /* === ADMIN ROUTES === */
