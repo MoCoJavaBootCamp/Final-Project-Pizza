@@ -61,6 +61,11 @@
     </div>
 </div>
 
+<form th:action="@{search3}" th:object="user" method="get">
+    <input type="text" id="search" value="search" th:field="*{username}">
+    <input type="submit" value="Search">
+    <p th:text="${user.username}"> </p>
+</form>
 
 
 

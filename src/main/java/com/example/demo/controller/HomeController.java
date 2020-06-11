@@ -1,11 +1,11 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import com.example.demo.repository.*;
 import com.example.demo.tables.Pizza;
 import com.example.demo.tables.Role;
 import com.example.demo.tables.User;
+import com.example.service.UserService;
 import com.sipios.springsearch.anotation.SearchSpec;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-public class HomeCtrl {
+public class HomeController {
 
     @Autowired
     UserRepository userRepository;
@@ -39,6 +39,9 @@ public class HomeCtrl {
 
     @Autowired
     ToppingRepository toppingRepository;
+
+    @Autowired
+    UserService userService;
 
     Pizza confirmPizza;
 
@@ -86,16 +89,16 @@ public class HomeCtrl {
         return "index";
     }
 
-    @GetMapping("/search3")
-    public String search(@PathVariable("username") String username, Model model) {
-        User user = userRepository.findByUsername(username);
-        model.addAttribute("user", user);
-        return "admin";
-    }
+//    @GetMapping("/search3")
+//    public String search(@PathVariable("username") String username, Model model) {
+//        User user = userRepository.findByUsername(username);
+//        model.addAttribute("user", user);
+//        return "admin";
+//    }
 
-    @PostMapping("/search3")
+    @GetMapping("/search3")
     public String search3(@ModelAttribute("keyword") String keyword, Model model){
-        model.addAttribute("user", userRepository.findByUsername(keyword));
+        model.addAttribute("user", userService.searchUser(keyword));
         return "search3";
 
     }
