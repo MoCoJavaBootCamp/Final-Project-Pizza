@@ -1,10 +1,9 @@
-package com.example.demo.controller;
+package com.example.demo;
 
 import com.example.demo.repository.*;
 import com.example.demo.tables.Pizza;
 import com.example.demo.tables.Role;
 import com.example.demo.tables.User;
-import com.example.service.UserService;
 import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
@@ -39,9 +38,6 @@ public class HomeController {
 
     @Autowired
     ToppingRepository toppingRepository;
-
-    @Autowired
-    UserService userService;
 
     Pizza confirmPizza;
 
@@ -96,12 +92,7 @@ public class HomeController {
 //        return "admin";
 //    }
 
-    @GetMapping("/search3")
-    public String search3(@ModelAttribute("keyword") String keyword, Model model){
-        model.addAttribute("user", userService.searchUser(keyword));
-        return "search3";
 
-    }
 
     @RequestMapping("/")
     public String index() { return "index"; }
@@ -173,6 +164,12 @@ public class HomeController {
         return "redirect:/checkout";
     }
 
+    @RequestMapping("/delete/{id}")
+    public String deleteTopping(@PathVariable("id") long id) {
+        toppingRepository.deleteById(id);
+        return "redirect:/";
+    }
+
     
 
     /* === ADMIN ROUTES === */
@@ -190,6 +187,7 @@ public class HomeController {
         model.addAttribute("totalsales", totalSalesStr);
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());
+        model.addAttribute("toppings", toppingRepository.findAll());
         return "admin";
     }
 }
