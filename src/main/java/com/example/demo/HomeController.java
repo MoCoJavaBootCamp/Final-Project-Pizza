@@ -156,7 +156,7 @@ public class HomeController {
 
     @RequestMapping("/orderSpecial/{id}")
     public String orderSpecial(@PathVariable("id") long id, Model model) {
-        confirmPizza = pizzaRepository.findById(id).get();
+        confirmPizza = new Pizza(pizzaRepository.findById(id).get());
         System.out.println(confirmPizza);
         return "redirect:/checkout";
     }

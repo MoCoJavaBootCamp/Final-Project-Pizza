@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,6 +23,10 @@ public class Topping {
 
     public Topping() {
         this.enabledForUser = true;
+    }
+
+    public Topping(Topping copy) {
+
     }
 
     public Topping(String name) {
