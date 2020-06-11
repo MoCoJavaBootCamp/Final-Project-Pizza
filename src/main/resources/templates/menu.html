@@ -10,16 +10,18 @@
 
 <h2>Specialty Pizzas</h2>
 
-<div th:each="pizza : ${specialtypizzas}">
-    <form action="#" th:action="@{/menu}" th:object="${spPizza}" method="post">
-        <h5 th:text="${pizza.name}"></h5>
-        <h6>[[${pizza.sauce}]]</h6>
-        <h6>Toppings:</h6>
-        <ul th:each="topping : ${pizza.toppings}">
-            <li>[[${topping.name}]]</li>
-        </ul>
-        <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}">Order</a>
-    </form>
+<div class="card-deck">
+    <div th:each="pizza : ${specialtypizzas}">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" th:src="@{${pizza.image}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">[[${pizza.name}]]</h5>
+                <p class="card-text">[[${pizza.description}]]</p>
+                <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-primary">Order</a>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 

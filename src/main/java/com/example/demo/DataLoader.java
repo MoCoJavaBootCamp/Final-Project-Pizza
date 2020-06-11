@@ -69,6 +69,8 @@ public class DataLoader implements CommandLineRunner {
 
         pizza.setToppings(toppings3);
         pizza.setPrice(pizza.getPrice());
+        pizza.setImage("/img/the_works_pizza.jpg");
+        pizza.setDescription("A dazzling dish made with spicy italian sausage, fresh-cut pepperoni, sizzling Canadian bacon, green peppers, olives, and onions. An American classic.");
         pizzaRepository.save(pizza);
 
         //Veggie
@@ -83,6 +85,8 @@ public class DataLoader implements CommandLineRunner {
         pizza.setSauce("Tomato");
         pizza.setToppings(toppings2);
         pizza.setPrice(pizza.getPrice());
+        pizza.setImage("/img/veggie_pizza.jpg");
+        pizza.setDescription("For the vegetarians out there, we have the pizza for you. Olives, sliced green peppers, fresh pineapple and onions. What more do you need?");
         pizzaRepository.save(pizza);
 
         //Meat Lovers
@@ -98,6 +102,8 @@ public class DataLoader implements CommandLineRunner {
         pizza.setName("Meat Lovers");
         pizza.setToppings(toppings);
         pizza.setPrice(pizza.getPrice());
+        pizza.setImage("/img/meat_lovers_pizza.jpg");
+        pizza.setDescription("A pizza for the carnivores. Pepperoni, gourmet sausage, chicken, and crispy bacon. Cruelty-free and a joy to see. Time to tuck in.");
         pizzaRepository.save(pizza);
 
     }
