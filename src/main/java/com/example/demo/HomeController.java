@@ -87,15 +87,6 @@ public class HomeController {
         return "index";
     }
 
-//    @GetMapping("/search3")
-//    public String search(@PathVariable("username") String username, Model model) {
-//        User user = userRepository.findByUsername(username);
-//        model.addAttribute("user", user);
-//        return "admin";
-//    }
-
-
-
     @RequestMapping("/")
     public String index() { return "index"; }
 
@@ -171,29 +162,13 @@ public class HomeController {
     }
 
 
-    @RequestMapping("/delete/{id}")
-    public String deleteTopping(@PathVariable("id") long id) {
-        toppingRepository.deleteById(id);
-        return "redirect:/";
-    }
-
-
     @RequestMapping("/orderhistory")
     public String orderHistory(Model model, Principal principal) {
         String username = principal.getName();
         Set<Pizza> allpizzasbyuser = pizzaRepository.findAllByUserUsername(username);
-
         model.addAttribute("pizzaorderhistory", allpizzasbyuser);
         return "orderhistory";
     }
-
-//    @RequestMapping("/confirmation")
-//    public String confirmation(@ModelAttribute("pizza") Pizza pizza, Model model) {
-//        model.addAttribute("pizza", pizza);
-//        System.out.println(pizza.toString());
-//        return "confirmation";
-//    }
-    
 
     /* === ADMIN ROUTES === */
     @RequestMapping("/admin")
@@ -208,9 +183,16 @@ public class HomeController {
 
         model.addAttribute("allusers", userRepository.findAll());
         model.addAttribute("totalsales", totalSalesStr);
+        model.addAttribute("toppings", toppingRepository.findAll());
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());
         model.addAttribute("toppings", toppingRepository.findAll());
         return "admin";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteTopping(@PathVariable("id") long id) {
+        toppingRepository.deleteById(id);
+        return "redirect:/";
     }
 }
