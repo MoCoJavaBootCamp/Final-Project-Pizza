@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -44,6 +45,16 @@ public class Pizza {
         this.specialty = false;
         this.price = initialPrice;
         this.date = LocalDateTime.now();
+    }
+
+    public Pizza(Pizza copy) {
+        this.name = copy.name;
+        this.specialty = false;
+        this.price = copy.getPrice();
+        this.date = LocalDateTime.now();
+        this.sauce = copy.sauce;
+        this.toppings = new HashSet<>();
+        this.toppings.addAll(copy.toppings);
     }
 
     //Getters and Setters

@@ -21,6 +21,10 @@ public class Topping {
     public Topping() {
     }
 
+    public Topping(Topping copy) {
+
+    }
+
     public Topping(String name) {
         this.name = name;
     }
