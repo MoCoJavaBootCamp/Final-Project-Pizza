@@ -14,6 +14,8 @@ import java.util.Set;
 
 @Entity
 public class Pizza {
+    private static final double initialPrice = 10.25;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -40,7 +42,7 @@ public class Pizza {
     //Constructors
     public Pizza() {
         this.specialty = false;
-        this.price = 10.25;
+        this.price = initialPrice;
         this.date = LocalDateTime.now();
     }
 
@@ -55,7 +57,7 @@ public class Pizza {
 
     public double getPrice() {
         int toppings = this.findNumToppings();
-
+        this.setPrice(initialPrice);
         if (toppings > 2) {
             for (int i = 2; i < toppings; i++) {
                 price += .5;
@@ -121,7 +123,6 @@ public class Pizza {
     }
 
     public String printDate() {
-        String pattern = "hh:mm a";
         String dateString = this.date.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
         return dateString;
     }

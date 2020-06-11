@@ -133,7 +133,6 @@ public class HomeCtrl {
             return "order";
         } else {
             confirmPizza = pizza;
-            System.out.println(confirmPizza.toString());
             return "redirect:/checkout";
         }
     }
@@ -148,11 +147,16 @@ public class HomeCtrl {
 
     @PostMapping("/checkout")
     public String confirmCheckout (@ModelAttribute("pizza") Pizza pizza, Model model, Principal principal) {
-        confirmPizza.setDate(LocalDateTime.now());
-        pizzaRepository.save(confirmPizza);
         String username = principal.getName();
+        confirmPizza.setUser(userRepository.findByUsername(username));
+        pizzaRepository.save(confirmPizza);
         userRepository.findByUsername(username).pizzas.add(confirmPizza);
-        return "redirect:/";
+        confirmPizza.setDate(LocalDateTime.now());
+        model.addAttribute(confirmPizza);
+        System.out.println(confirmPizza.toString());
+        System.out.println(userRepository.findByUsername(username).toString());
+
+        return "redirect:/confirmation";
     }
 
     @RequestMapping("/menu")
@@ -167,6 +171,13 @@ public class HomeCtrl {
         confirmPizza = pizzaRepository.findById(id).get();
         System.out.println(confirmPizza);
         return "redirect:/checkout";
+    }
+
+    @RequestMapping("/confirmation")
+    public String confirmation(@ModelAttribute("pizza") Pizza pizza, Model model) {
+        model.addAttribute("pizza", pizza);
+        System.out.println(pizza.toString());
+        return "confirmation";
     }
 
     

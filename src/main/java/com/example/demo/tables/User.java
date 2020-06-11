@@ -174,4 +174,20 @@ public class User {
         this.enabled = enabled;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", zip=" + zip +
+                ", enabled=" + enabled +
+                ", pizzas=" + pizzas +
+                '}';
+    }
 }
