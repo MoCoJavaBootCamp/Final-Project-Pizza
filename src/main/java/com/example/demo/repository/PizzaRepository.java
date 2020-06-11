@@ -11,4 +11,5 @@ public interface PizzaRepository extends CrudRepository<Pizza, Long> {
     Set<Pizza> findAll();
     Set<Pizza> findPizzasBySpecialtyTrue();
     Set<Pizza> findAllByUserUsername(String username);
+    Pizza findPizzaByUser_Username(String username);
 }
