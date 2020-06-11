@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <style>
+    <style th:inline="text">
         html {
-            background: url(https://images.pexels.com/photos/1596888/pexels-photo-1596888.jpeg?cs=srgb&dl=pizza-neon-light-signage-1596888.jpg&fm=jpg) no-repeat center center fixed;
+            background: url([[@{https://images.pexels.com/photos/1596888/pexels-photo-1596888.jpeg?cs=srgb&dl=pizza-neon-light-signage-1596888.jpg&fm=jpg}]])
+            no-repeat center center fixed;
             background-size: cover;
             height: 100%;
             overflow: hidden;
         }
-    </style>
+        </style>
     <div th:insert="components :: meta-links"></div>
     <title>PizzaPizza Home</title>
 </head>
