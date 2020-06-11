@@ -32,7 +32,7 @@ public class Pizza {
 
     private boolean specialty;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "pizzas")
     private Set<Topping> toppings;
 
     @ManyToOne(fetch = FetchType.EAGER)

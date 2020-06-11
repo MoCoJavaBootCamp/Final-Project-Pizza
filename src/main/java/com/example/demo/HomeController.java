@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.repository.*;
 import com.example.demo.tables.Pizza;
 import com.example.demo.tables.Role;
+import com.example.demo.tables.Topping;
 import com.example.demo.tables.User;
 import com.sipios.springsearch.anotation.SearchSpec;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -105,7 +107,6 @@ public class HomeController {
         String username = principal.getName();
         model.addAttribute("user", userRepository.findByUsername(username));
         model.addAttribute("alltoppings", toppingRepository.findAll());
-
         return "order";
     }
 
@@ -189,9 +190,11 @@ public class HomeController {
         return "admin";
     }
 
-    @RequestMapping("/delete/{id}")
-    public String deleteTopping(@PathVariable("id") long id) {
-        toppingRepository.deleteById(id);
-        return "redirect:/";
+    @RequestMapping("/disable/{id}")
+    public String disableTopping(@PathVariable("id") long id, Model model) {
+        Topping topping = toppingRepository.findToppingById(id);
+        topping.setEnabledForUser(false);
+        model.addAttribute("topping", topping);
+        return "/admin";
     }
 }

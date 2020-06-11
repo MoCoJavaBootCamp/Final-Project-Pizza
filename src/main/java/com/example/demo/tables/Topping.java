@@ -18,14 +18,17 @@ public class Topping {
 
     private int count;
 
+    private boolean enabledForUser;
+
     public Topping() {
+        this.enabledForUser = true;
     }
 
     public Topping(String name) {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "toppings")
+    @ManyToMany
     private Set<Pizza> pizzas;
 
     public long getId() {
@@ -50,6 +53,12 @@ public class Topping {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public boolean isEnabledForUser() {return enabledForUser;}
+
+    public void setEnabledForUser(boolean enabledForUser) {
+        this.enabledForUser = enabledForUser;
     }
 
     public Set<Pizza> getPizzas() {

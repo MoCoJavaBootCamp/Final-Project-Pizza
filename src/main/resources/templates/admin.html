@@ -3,6 +3,8 @@
 <head>
 
     <div th:insert="components :: meta-links"></div>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <title>PizzaPizza ADMIN</title>
 
 </head>
@@ -17,15 +19,20 @@
 <div class="row">
     <div class="col-2">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Customer list</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Pizza stats</a>
-            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Total Sale</a>
-            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Toppings</a>
+            <a class="nav-link active" id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-customer" role="tab"
+               aria-controls="v-pills-customer" aria-selected="true">Customer list</a>
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
+               role="tab" aria-controls="v-pills-profile" aria-selected="false">Pizza stats</a>
+            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" r
+               ole="tab" aria-controls="v-pills-messages" aria-selected="false">Total Sale</a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
+               role="tab" aria-controls="v-pills-settings" aria-selected="false">Toppings</a>
         </div>
     </div>
     <div class="col-10">
         <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="tab-pane fade show active" id="v-pills-customer" role="tabpanel"
+                 aria-labelledby="v-pills-customer-tab">
                 <div class="card-columns">
                     <div class="card ">
                         <label for="myInput">Find user</label>
@@ -71,12 +78,13 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                <div class="card bg-primary p-3 text-center">
+                <div class="card bg-secondary p-3 text-center">
                     <table>
                         <thead>
                         <tr>
                             <th scope="col">Topping</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Toggle Status</th>
                             <th scope="col">id</th>
 
                         </tr>
@@ -84,10 +92,24 @@
                         <tbody id="topping_table">
                         <tr th:each="topping : ${toppings}">
                             <td th:text="${topping.name}"></td>
-                            <td >
-                                <a th:href="@{/delete/{id}(id=${topping.id})}">
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </a>
+                            <td th:text="${topping.enabledForUser} ? 'TRUE' : 'FALSE'"></td>
+                            <td>
+<!--                                <a th:href="@{/disable/{id}(id=${topping.id})}">-->
+<!--                                    <button type="button" class="btn btn-danger"-->
+<!--                                            th:action="@{/disable/{id}(id=${topping.id})}" method="put">Disable-->
+<!--                                    </button>-->
+<!--                                </a>-->
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-primary active">
+                                        <input type="radio" name="options" id="option1"
+                                               checked>
+                                        Enable
+                                    </label>
+                                    <label class="btn btn-danger">
+                                        <input type="radio" name="options" id="option2"
+                                        th:href="@{/disable/{id}(id=${topping.id})}"> Disable
+                                    </label>
+                                </div>
                             </td>
                             <td th:text="${topping.id}"></td>
                         </tr>
