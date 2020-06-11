@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-
-    <style>
-        body {
-            background: url(/img/pizza-neon-light-signage-1596888.jpg) no-repeat center center fixed !important;
-            -webkit-background-size: cover !important;
-            -moz-background-size: cover !important;
-            -o-background-size: cover !important;
-            background-size: cover !important;
+    <style th:inline="text">
+        html {
+            background: url([[@{https://images.pexels.com/photos/1596888/pexels-photo-1596888.jpeg?cs=srgb&dl=pizza-neon-light-signage-1596888.jpg&fm=jpg}]])
+            no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            overflow: hidden;
         }
     </style>
     <div th:insert="components :: meta-links"></div>
@@ -29,7 +19,5 @@
 
 <div th:insert="components :: scripts"></div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-</body>
+
 </html>

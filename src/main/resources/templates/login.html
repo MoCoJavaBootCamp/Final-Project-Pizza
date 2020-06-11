@@ -7,7 +7,7 @@
 <body>
 <div th:insert="components :: navbar"></div>
 
-<h1 class="w-25 mx-auto">Sign In</h1>
+<h1 class="w-50 mx-auto">Sign In</h1>
 <div th:if="${param.error}">Invalid username or password</div>
 
 <form th:action="@{/login}" method="post" class="w-25 mx-auto" >

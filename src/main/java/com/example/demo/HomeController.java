@@ -21,6 +21,7 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -106,7 +107,6 @@ public class HomeController {
         String username = principal.getName();
         model.addAttribute("user", userRepository.findByUsername(username));
         model.addAttribute("alltoppings", toppingRepository.findAll());
-
         return "order";
     }
 
@@ -190,9 +190,11 @@ public class HomeController {
         return "admin";
     }
 
-    @RequestMapping("/delete/{id}")
-    public String deleteTopping(@PathVariable("id") long id) {
-        toppingRepository.deleteById(id);
-        return "redirect:/";
+    @RequestMapping("/disable/{id}")
+    public String disableTopping(@PathVariable("id") long id, Model model) {
+        Topping topping = toppingRepository.findToppingById(id);
+        topping.setEnabledForUser(false);
+        model.addAttribute("topping", topping);
+        return "/admin";
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -28,7 +29,7 @@ public class Pizza {
     private String sauce;
 
     @NotNull
-    @NotEmpty
+    @Size(min=2, max = 20)
     private String name;
 
     private boolean specialty;
@@ -37,7 +38,7 @@ public class Pizza {
 
     private String image;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "pizzas")
     private Set<Topping> toppings;
 
     @ManyToOne(fetch = FetchType.EAGER)
