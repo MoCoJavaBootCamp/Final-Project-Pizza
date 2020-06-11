@@ -44,11 +44,11 @@ public class HomeController {
 
     Pizza confirmPizza;
 
-    @RequestMapping("/secure")
-    public String secure(Principal principal, Model model) {
+    @RequestMapping("/myaccount")
+    public String myaccount(Principal principal, Model model) {
         String username = principal.getName();
         model.addAttribute("user", userRepository.findByUsername(username));
-        return "secure";
+        return "myaccount";
     }
 
     @RequestMapping("/register")

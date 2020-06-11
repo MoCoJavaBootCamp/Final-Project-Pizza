@@ -92,24 +92,26 @@
                         <tbody id="topping_table">
                         <tr th:each="topping : ${toppings}">
                             <td th:text="${topping.name}"></td>
-                            <td th:text="${topping.enabledForUser} ? 'TRUE' : 'FALSE'"></td>
+                            <td th:text="${topping.enabledForUser}? 'TRUE' : 'FALSE'"></td>
                             <td>
 <!--                                <a th:href="@{/disable/{id}(id=${topping.id})}">-->
 <!--                                    <button type="button" class="btn btn-danger"-->
 <!--                                            th:action="@{/disable/{id}(id=${topping.id})}" method="put">Disable-->
 <!--                                    </button>-->
 <!--                                </a>-->
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
-                                        <input type="radio" name="options" id="option1"
-                                               checked>
-                                        Enable
-                                    </label>
-                                    <label class="btn btn-danger">
-                                        <input type="radio" name="options" id="option2"
-                                        th:href="@{/disable/{id}(id=${topping.id})}"> Disable
-                                    </label>
-                                </div>
+                                <!-- TURN INTO FORM AND SUBMIT -->
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-primary active">
+                                            <input type="radio" name="options" id="option1"
+                                                   checked>
+                                            Enable
+                                        </label>
+                                        <label class="btn btn-danger">
+                                            <input type="radio" name="options" id="option2"
+                                            th:href="@{/disable/{id}(id=${topping.id})}"> Disable
+                                        </label>
+                                    </div>
+                                <!-- TURN INTO FORM AND SUBMIT -->
                             </td>
                             <td th:text="${topping.id}"></td>
                         </tr>
