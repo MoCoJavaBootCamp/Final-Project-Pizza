@@ -227,10 +227,4 @@ public class HomeController {
         return "redirect:/admin";
     }
 
-    @RequestMapping("/updateaccount/{id}")
-    public String updateCar(@PathVariable("id") long id, Model model){
-        model.addAttribute("user", userRepository.findById(id).get());
-        return "myaccount";
-    }
-
 }
