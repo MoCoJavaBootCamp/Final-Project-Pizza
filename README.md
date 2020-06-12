@@ -1,5 +1,5 @@
 # Final-Project-Pizza
-##Intro
+## Intro
 PizzaPizza is the leading pizza ordering platform that allows you to create and order pizzas, but also generate detailed reports about your users and sales.
 
 ## Team
