@@ -1,13 +1,9 @@
 package com.example.demo.tables;
 
 import com.sun.istack.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -36,7 +32,7 @@ public class Pizza {
 
     private String description;
 
-    private String image;
+    private String thumbnail;
 
     @ManyToMany
     private Set<Topping> toppings;
@@ -125,12 +121,12 @@ public class Pizza {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
+    public String getThumbnail() {
+        return thumbnail;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setThumbnail(String image) {
+        this.thumbnail = image;
     }
 
     public User getUser() {
