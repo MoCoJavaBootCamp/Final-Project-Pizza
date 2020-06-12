@@ -38,7 +38,7 @@ public class Pizza {
 
     private String image;
 
-    @ManyToMany(mappedBy = "pizzas")
+    @ManyToMany
     private Set<Topping> toppings;
 
     @ManyToOne(fetch = FetchType.EAGER)

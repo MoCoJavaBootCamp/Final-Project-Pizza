@@ -21,37 +21,42 @@
 
 <h1>Craft your own or choose from the menu</h1>
 <a th:href="@{/menu}">Menu</a>
-<h5>Current User: [[${user.firstName}]]</h5>
-<form action="#" th:action="@{/processorder}" th:object="${pizza}" method="post">
-    <input type="hidden" th:field="*{user}" th:value="${user}"/>
-    <input type="hidden" th:field="*{id}"/>
-    <input type="hidden" th:field="*{date}"/>
-    <ol>
-        <li>
-            Pizza name:<br>
-            <input type="text" th:value="Custom" placeholder="Name your pizza" th:field="*{name}"/>
-            <span th:if="${#fields.hasErrors('name')}"
-                  th:errors="*{name}"></span></li>
-        <li>Sauce: <input type="radio" id="tomato" th:field="*{sauce}" th:value="Tomato"/>
-            <label for="tomato">Classic Tomato</label>
-            <input type="radio" id="bbq" th:field="*{sauce}" th:value="BBQ"/>
-            <label for="bbq">BBQ</label>
-            <input type="radio" id="alfredo" th:field="*{sauce}" th:value="Alfredo"/>
-            <label for="alfredo">Alfredo</label>
-            <span th:if="${#fields.hasErrors('sauce')}"
-                  th:errors="*{sauce}"></span>
-        </li>
-        <li>
-            Toppings:
-            <div th:each="topping : ${alltoppings}">
-                <input type="checkbox" id="${topping.id}" th:field="*{toppings}" th:value="${topping.id}"/>
-                <label for="${topping.id}">[[${topping.name}]]</label>
-            </div>
-        </li>
-    </ol>
-    <input type="submit" value="Submit"/>
 
-</form>
+<div class="container">
+
+    <h5>Current User: [[${user.firstName}]]</h5>
+    <form action="#" th:action="@{/processorder}" th:object="${pizza}" method="post" class="vh-50">
+        <input type="hidden" th:field="*{user}" th:value="${user}"/>
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{date}"/>
+        <ol>
+            <li>
+                Pizza name:<br>
+                <input type="text" th:value="Custom" placeholder="Name your pizza" th:field="*{name}"/>
+                <span th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}"></span></li>
+            <li>Sauce: <input type="radio" id="tomato" th:field="*{sauce}" th:value="Tomato"/>
+                <label for="tomato">Classic Tomato</label>
+                <input type="radio" id="bbq" th:field="*{sauce}" th:value="BBQ"/>
+                <label for="bbq">BBQ</label>
+                <input type="radio" id="alfredo" th:field="*{sauce}" th:value="Alfredo"/>
+                <label for="alfredo">Alfredo</label>
+                <span th:if="${#fields.hasErrors('sauce')}"
+                      th:errors="*{sauce}"></span>
+            </li>
+            <li>
+                Toppings:
+                <div th:each="topping : ${alltoppings}">
+                    <input type="checkbox" id="${topping.id}" th:field="*{toppings}" th:value="${topping.id}"/>
+                    <label for="${topping.id}">[[${topping.name}]]</label>
+                </div>
+            </li>
+        </ol>
+        <input type="submit" value="Submit"/>
+
+    </form>
+
+</div>
 
 <div th:insert="components :: scripts"></div>
 </body>
