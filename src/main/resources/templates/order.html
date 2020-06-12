@@ -54,7 +54,7 @@
                     </li>
                 </ol>
                 <br>
-                <input type="submit" class="btn btn-primary mx-auto" value="Place Custom Pizza Order">
+                <input type="submit" class="btn btn-success mx-auto" value="Place Custom Pizza Order">
             </form>
             </div>
         </div>
@@ -67,7 +67,7 @@
                     <div th:each="pizza : ${specialtypizzas}">
                         <li>[[${pizza.name}]]</li>
                     </div>
-                    <a th:href="@{/menu}" class="btn btn-primary align-bottom">Order Specialty Pizza</a>
+                    <a th:href="@{/menu}" class="btn btn-success align-bottom">Order Specialty Pizza</a>
                 </div>
             </div>
         </div>
