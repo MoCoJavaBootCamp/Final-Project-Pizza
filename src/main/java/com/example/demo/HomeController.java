@@ -120,13 +120,14 @@ public class HomeController {
             return "order";
         } else {
             confirmPizza = pizza;
-            System.out.println(confirmPizza.toString());
+            System.out.println("Pizza being sent to checkout: " + confirmPizza.toString());
             return "redirect:/checkout";
         }
     }
 
     @GetMapping("/checkout")
     public String checkout (Model model, Principal principal) {
+        System.out.println("Pizza at the checkout: " + confirmPizza.toString());
         model.addAttribute("pizza", confirmPizza);
         String username = principal.getName();
         model.addAttribute("user", userRepository.findByUsername(username));
