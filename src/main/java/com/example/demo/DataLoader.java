@@ -47,6 +47,8 @@ public class DataLoader implements CommandLineRunner {
         toppingRepository.save(topping);
         topping = new Topping("Mushrooms");
         toppingRepository.save(topping);
+        topping = new Topping("Philly Steak");
+        toppingRepository.save(topping);
 
         Pizza pizza;
 
