@@ -27,7 +27,7 @@ public class DataLoader implements CommandLineRunner {
         toppingRepository.save(topping);
         topping = new Topping("Spicy Italian Sausage");
         toppingRepository.save(topping);
-        topping = new Topping("Chicken");
+        topping = new Topping("Grilled Chicken");
         toppingRepository.save(topping);
         topping = new Topping("Bacon");
         toppingRepository.save(topping);
@@ -93,7 +93,7 @@ public class DataLoader implements CommandLineRunner {
         Set<Topping> toppings = new HashSet<>();
         toppings.add(toppingRepository.findToppingByName("Pepperoni"));
         toppings.add(toppingRepository.findToppingByName("Sausage"));
-        toppings.add(toppingRepository.findToppingByName("Chicken"));
+        toppings.add(toppingRepository.findToppingByName("Grilled Chicken"));
         toppings.add(toppingRepository.findToppingByName("Bacon"));
 
         pizza = new Pizza();
@@ -121,6 +121,41 @@ public class DataLoader implements CommandLineRunner {
         pizza.setImage("https://www.thespruceeats.com/thmb/c7q1QAXOnuTNPqp9J-pvRnzl46E=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/IMG_4618fhor-a98bebf4c7e743a8bbfd6071b5dafc12.jpg");
         pizza.setDescription("Get a taste of the tropics. This super delicious pizza is loaded with sweet, " +
                 "juicy pineapple tidbits, julienne-cut Canadian bacon, and hickory-smoked bacon");
+        pizzaRepository.save(pizza);
+
+        //Buffalo Chicken
+        Set<Topping> toppings5 = new HashSet<>();
+        toppings.add(toppingRepository.findToppingByName("Grilled Chicken"));
+        toppings.add(toppingRepository.findToppingByName("Bacon"));
+        toppings.add(toppingRepository.findToppingByName("Onions"));
+
+        pizza = new Pizza();
+        pizza.setSpecialty(true);
+        pizza.setSauce("Buffalo");
+        pizza.setName("Buffalo Chicken");
+        pizza.setToppings(toppings4);
+        pizza.setPrice(pizza.getPrice());
+        pizza.setImage("https://kitchenswagger.com/wp-content/uploads/2016/05/buffalo-chicken-pizza1.jpg");
+        pizza.setDescription("Our original crust is covered in a new buffalo sauce with a hint of buttery richness " +
+                "and a tangy, craveable kick, piled high with grilled chicken.");
+        pizzaRepository.save(pizza);
+
+        //Philly Cheese Steak
+        Set<Topping> toppings6 = new HashSet<>();
+        toppings.add(toppingRepository.findToppingByName("Philly Steak"));
+        toppings.add(toppingRepository.findToppingByName("Green Peppers"));
+        toppings.add(toppingRepository.findToppingByName("Onions"));
+
+        pizza = new Pizza();
+        pizza.setSpecialty(true);
+        pizza.setSauce("Ranch");
+        pizza.setName("Philly Cheese Steak");
+        pizza.setToppings(toppings6);
+        pizza.setPrice(pizza.getPrice());
+        pizza.setImage("https://cdn.vox-cdn.com/thumbor/6t9djaI_BljF3hULLsiFTCzqDHE=/154x0:572x314/920x613/filters:focal(154x0:572x314):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/44221250/cheesestkPJfb.0.0.png");
+        pizza.setDescription("The Philly Cheese Steak pizza includes mozzarella and provolone " +
+                "cheeses, onions and green peppers. Made only in Philly, so please allow 1-2 weeks delivery if not " +
+                "local.");
         pizzaRepository.save(pizza);
 
     }
