@@ -20,11 +20,12 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeRequests()
-                .antMatchers("/js/**","/css/**","/register","/login","/","/styles/**","/img/**","/order","/menu").permitAll()
+                .antMatchers("/js/**","/css/**","/register","/login",
+                        "/order", "/menu", "/checkout", "/","/styles/**","/styles/**", "/img/**",
+     "/img/**")
+     .permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-                //.antMatchers("/register").permitAll()
-                //.antMatchers("/h2-console/**").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()

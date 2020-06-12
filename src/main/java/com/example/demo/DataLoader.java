@@ -85,7 +85,7 @@ public class DataLoader implements CommandLineRunner {
         pizza.setSauce("Tomato");
         pizza.setToppings(toppings2);
         pizza.setPrice(pizza.getPrice());
-        pizza.setImage("http://www.coolcuisine.fr/wp-content/uploads/2019/06/pizza.jpg");
+        pizza.setImage("/img/veggie_pizza.jpg");
         pizza.setDescription("For the vegetarians out there, we have the pizza for you. Olives, sliced green peppers, fresh pineapple and onions. What more do you need?");
         pizzaRepository.save(pizza);
 
