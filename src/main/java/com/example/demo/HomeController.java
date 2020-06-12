@@ -201,7 +201,7 @@ public class HomeController {
             return "redirect:/admin";        }
     }
 
-    @RequestMapping("/update/{id}")
+    @RequestMapping("/updatetopping/{id}")
     public String toggleTopping(@PathVariable("id") long id, Model model) {
         Topping topping = toppingRepository.findToppingById(id);
         System.out.println("update topping before: " + topping.toString());
@@ -217,7 +217,5 @@ public class HomeController {
         toppingRepository.deleteById(id);
         return "redirect:/admin";
     }
-
-
 
 }
