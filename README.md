@@ -1,11 +1,22 @@
 # Final-Project-Pizza
+##Intro
+PizzaPizza is the leading pizza ordering platform that allows you to create and order pizzas, but also generate detailed reports about your users and sales.
 
 ## Team
 | Name | Responsibilities |
 |---|---|
-| [Andrew (azdoolittle)](https://github.com/azdoolittle) | SecConfig, Role, RoleRepo, Reports, ReportsRepo, Nav |
-| [Eyasu (eyasuh)](https://github.com/eyasuh) | User, UserRepo, Register, Base fragment template |
-| [Jaeha (jsong073)](https://github.com/jsong073) | Pizza, PizzaRepo, Ordering, Menu |
+| [Andrew (azdoolittle)](https://github.com/azdoolittle) | Security, Login, Role, Reports, Nav, Admin |
+| [Eyasu (eyasuh)](https://github.com/eyasuh) | User, Register, Admin, Reports, Fragment Templates |
+| [Jaeha (jsong073)](https://github.com/jsong073) | Pizza, Menu, Ordering, Checkout, Confirmation|
+
+## Technologies
+- Java
+- SpringBoot
+- Thymeleaf
+- Hibernate
+- JavaScript
+- HTML/CSS (Bootstrap)
+
 ## Pages
 - home
 - login
@@ -19,7 +30,7 @@
 ### User
 | id | firstName | lastName | email  | password | phone | street | city | zip | pizzas | enabled | 
 |---|---|---|---|---|---|---|---|---|---|---|
-| long | string | string | string | string | long | string | string | long | Set`<Pizza>` | boolean |
+| long | String | String | String | String | long | String | String | long | Set`<Pizza>` | boolean |
 
 ### Role
 | id | user | role | 
@@ -27,14 +38,14 @@
 | long | string | string |
 
 ### Pizza
-| id | name | sauce | toppings | price  | user | date |
-|---|---|---|---|---|---|---|
-| long | string | string | Set`<Topping>` | double | User | LocalDateTime |
+| id | name | specialty | description | sauce | toppings | price  | user | date | image | 
+|---|---|---|---|---|---|---|---|---|---|
+| long | String | boolean | String | String | Set`<Topping>` | double | User | LocalDateTime | String |
 
 ### Topping
-| id | name | price  | count | pizzas |
-|---|---|---|---|---|
-| long | string | double | long | Set`<Pizza>` |
+| id | name | enabledForUser | price  | count | pizzas |
+|---|---|---|---|---|---|
+| long | String | boolean | double | long | Set`<Pizza>` |
 
 ### Report
 | id | totalSales | topToppings | users |
