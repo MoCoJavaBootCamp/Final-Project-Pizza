@@ -28,7 +28,7 @@
                     </thead>
                     <tbody id="order-history-table">
                     <tr th:each="pizza : ${pizzaorderhistory}">
-                        <td th:text="${pizza.date}" class="p-3"></td>
+                        <td th:text="${pizza.printDate()}" class="p-3"></td>
                         <td th:text="${pizza.name}" class="p-3"></td>
                         <td th:text="${pizza.price}" class="p-3"></td>
                     </tr>

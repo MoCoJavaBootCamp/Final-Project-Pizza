@@ -108,9 +108,9 @@ public class DataLoader implements CommandLineRunner {
 
         //Hawaiian
         Set<Topping> toppings4 = new HashSet<>();
-        toppings.add(toppingRepository.findToppingByName("Canadian Bacon"));
-        toppings.add(toppingRepository.findToppingByName("Pineapple"));
-        toppings.add(toppingRepository.findToppingByName("Bacon"));
+        toppings4.add(toppingRepository.findToppingByName("Canadian Bacon"));
+        toppings4.add(toppingRepository.findToppingByName("Pineapple"));
+        toppings4.add(toppingRepository.findToppingByName("Bacon"));
 
         pizza = new Pizza();
         pizza.setSpecialty(true);
@@ -125,15 +125,15 @@ public class DataLoader implements CommandLineRunner {
 
         //Buffalo Chicken
         Set<Topping> toppings5 = new HashSet<>();
-        toppings.add(toppingRepository.findToppingByName("Grilled Chicken"));
-        toppings.add(toppingRepository.findToppingByName("Bacon"));
-        toppings.add(toppingRepository.findToppingByName("Onions"));
+        toppings5.add(toppingRepository.findToppingByName("Grilled Chicken"));
+        toppings5.add(toppingRepository.findToppingByName("Bacon"));
+        toppings5.add(toppingRepository.findToppingByName("Onions"));
 
         pizza = new Pizza();
         pizza.setSpecialty(true);
         pizza.setSauce("Buffalo");
         pizza.setName("Buffalo Chicken");
-        pizza.setToppings(toppings4);
+        pizza.setToppings(toppings5);
         pizza.setPrice(pizza.getPrice());
         pizza.setImage("https://kitchenswagger.com/wp-content/uploads/2016/05/buffalo-chicken-pizza1.jpg");
         pizza.setDescription("Our original crust is covered in a new buffalo sauce with a hint of buttery richness " +
@@ -142,9 +142,9 @@ public class DataLoader implements CommandLineRunner {
 
         //Philly Cheese Steak
         Set<Topping> toppings6 = new HashSet<>();
-        toppings.add(toppingRepository.findToppingByName("Philly Steak"));
-        toppings.add(toppingRepository.findToppingByName("Green Peppers"));
-        toppings.add(toppingRepository.findToppingByName("Onions"));
+        toppings6.add(toppingRepository.findToppingByName("Philly Steak"));
+        toppings6.add(toppingRepository.findToppingByName("Green Peppers"));
+        toppings6.add(toppingRepository.findToppingByName("Onions"));
 
         pizza = new Pizza();
         pizza.setSpecialty(true);
