@@ -7,10 +7,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>, JpaSpecificationExecutor<User> {
     User findByUsername(String username);
+    Set<User> findAllByUsernameNotNullOrderByLastName();
 
     @Query("select u from User u where u.username like concat('%',:email,'%')")
     User findUserByEmail(String email);

@@ -10,14 +10,14 @@
 
 <div th:insert="components :: navbar"></div>
 
-<h1>Order History</h1>
+<h1 class="text-white w-75 mx-auto">Order History</h1>
 
 
 <div class="row">
     <div class="col-10">
         <div class=" mx-auto p-3 w-75">
             <input class="form-control" id="order-history-search-input" type="text" placeholder="Search">
-            <div class="card-body bg-secondary">
+            <div class="card-body bg-white rounded">
                 <table>
                     <thead>
                     <tr>
@@ -28,7 +28,7 @@
                     </thead>
                     <tbody id="order-history-table">
                     <tr th:each="pizza : ${pizzaorderhistory}">
-                        <td th:text="${pizza.date}" class="p-3"></td>
+                        <td th:text="${pizza.printDate()}" class="p-3"></td>
                         <td th:text="${pizza.name}" class="p-3"></td>
                         <td th:text="${pizza.price}" class="p-3"></td>
                     </tr>
