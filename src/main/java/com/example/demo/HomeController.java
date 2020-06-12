@@ -106,6 +106,8 @@ public class HomeController {
         model.addAttribute("pizza", new Pizza());
 //        String username = principal.getName();
 //        model.addAttribute("user", userRepository.findByUsername(username));
+        model.addAttribute("specialtypizzas",
+                pizzaRepository.findPizzasBySpecialtyTrue());
         model.addAttribute("alltoppings", toppingRepository.findAll());
         return "order";
     }

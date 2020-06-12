@@ -91,50 +91,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
-<!--remove-->
-
-<!--<h3>Checkout:</h3>-->
-<!--<h5>Order Name: [[${pizza.name}]]</h5>-->
-<!--<table>-->
-
-<!--    <tr>-->
-<!--        <th>Base Price</th>-->
-<!--        <th></th>-->
-<!--        <th>10.25</th>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <th>Sauce</th>-->
-<!--        <td>[[${pizza.sauce}]]</td>-->
-<!--        <td>&#45;&#45;</td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <th>Toppings:</th>-->
-<!--    </tr>-->
-<!--    <tr th:each="topping, iter : ${pizza.toppings}">-->
-<!--        <td></td>-->
-<!--        <td>[[${topping.name}]]</td>-->
-<!--        <span th:if="${iter.index > 1}">-->
-<!--            <td>0.50</td>-->
-<!--        </span>-->
-<!--        <span th:unless="${iter.index > 1}">-->
-<!--            <td>Two toppings free</td>-->
-<!--        </span>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td>Total Price: </td>-->
-<!--        <td></td>-->
-<!--        <td>[[${pizza.price}]]</td>-->
-<!--    </tr>-->
-<!--</table>-->
-
-<!--<form action="#" th:action="@{/checkout}" th:object="${pizza}" method="post">-->
-<!--    <input type="submit" value="Confirm Order"/>-->
-<!--</form>-->
 <a th:href="@{/order}">No, Go Back.</a>
 
 
