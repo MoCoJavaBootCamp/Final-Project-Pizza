@@ -29,7 +29,7 @@
                     <h5 class="card-title">Custom Pizza</h5>
                     <p class="card-text">Mix and match any available toppings of your choice.</p>
                     <br/><br/><br/>
-                    <a th:href="@{/order}" class="btn btn-primary">Order Custom Pizza</a>
+                    <a th:href="@{/order}" class="btn btn-success">Order Custom Pizza</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <h5 class="card-title">[[${pizza.name}]]</h5>
                         <p class="card-text">[[${pizza.description}]]</p>
-                        <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-primary">Order</a>
+                        <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-success">Order</a>
                     </div>
                 </div>
             </div>

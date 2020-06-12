@@ -104,8 +104,6 @@ public class HomeController {
     @GetMapping("/order")
     public String order(Model model, Principal principal) {
         model.addAttribute("pizza", new Pizza());
-//        String username = principal.getName();
-//        model.addAttribute("user", userRepository.findByUsername(username));
         model.addAttribute("specialtypizzas",
                 pizzaRepository.findPizzasBySpecialtyTrue());
         model.addAttribute("alltoppings", toppingRepository.findAll());

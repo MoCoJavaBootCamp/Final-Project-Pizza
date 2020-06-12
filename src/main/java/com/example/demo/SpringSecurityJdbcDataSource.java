@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SpringSecurityJdbcDataSource {
 
-
     @Bean
     public CommandLineRunner run(UserRepository userRepository,
                                  RoleRepository roleRepository,
