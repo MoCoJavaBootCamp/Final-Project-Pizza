@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
+    <div th:insert="components :: meta-links"></div>
 
     <style th:inline="text">
         body {
@@ -8,76 +9,69 @@
                      no-repeat center center fixed;
             background-size: cover;
             height: 100%;
-            overflow: hidden;
         }
     </style>
 
-    <div th:insert="components :: meta-links"></div>
     <title>PizzaPizza Order</title>
 </head>
 
-<body>
+<body class="pizza-bg">
 <div th:insert="components :: navbar"></div>
 
+<h1 class="text-dark text-center">Craft your own or choose from the specialty menu</h1>
 
-
-
-<div class="container bg-light rounded m-2 p-1">
-    <h1>Craft your own or choose from the menu</h1>
-    <a class="btn btn-success" th:href="@{/menu}">Menu</a>
-    <form action="#" th:action="@{/processorder}" th:object="${pizza}" method="post">
-        <div class="form-group row">
-            <label for="inputName" class="col-sm-2 col-form-label">Pizza Name </label>
-            <div class="col-sm-10">
-                <input type="text" id="inputName" placeholder="Name your pizza" th:field="*{name}"/>
-                <span th:if="${#fields.hasErrors('name')}"
-                      th:errors="*{name}"></span></li>
-            </div>
-        </div>
-        <fieldset class="form-group">
-            <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0">Sauce</legend>
-                <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" th:field="*{sauce}" id="tomato" th:value="Tomato" checked>
-                        <label class="form-check-label" for="tomato">
-                            Classic Tomato
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" id="bbq" th:field="*{sauce}" th:value="BBQ"/>
-                        <label class="form-check-label" for="bbq">
-                            BBQ
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" id="alfredo" th:field="*{sauce}" th:value="Alfredo"/>
-                        <label class="form-check-label" for="alfredo">
-                            Alfredo
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <div class="form-group row">
-            <div class="col-sm-2">Toppings</div>
-            <div class="col-sm-10">
-                <div class="form-check">
-                    <div th:each="topping : ${alltoppings}">
-                        <div th:if="${topping.enabledForUser == true}">
-                            <input class="form-check-input" type="checkbox" id="${topping.id}" th:field="*{toppings}" th:value="${topping.id}"/>
-                            <label class="form-check-label" for="${topping.id}">[[${topping.name}]]</label>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col mb-4">
+            <div class="card h-100" style="width: 18rem;">
+            <form action="#" th:action="@{/processorder}" th:object="${pizza}" method="post"
+                  class="vh-50 bg-white rounded">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{date}"/>
+                <ol>
+                    <li>
+                        Pizza name:<br>
+                        <input type="text" th:value="Custom" placeholder="Name your pizza" th:field="*{name}"/>
+                        <span th:if="${#fields.hasErrors('name')}"
+                              th:errors="*{name}"></span></li>
+                    <li>Sauce: <input type="radio" id="tomato" th:field="*{sauce}" th:value="Tomato"/>
+                        <label for="tomato">Classic Tomato</label>
+                        <input type="radio" id="bbq" th:field="*{sauce}" th:value="BBQ"/>
+                        <label for="bbq">BBQ</label>
+                        <input type="radio" id="alfredo" th:field="*{sauce}" th:value="Alfredo"/>
+                        <label for="alfredo">Alfredo</label>
+                        <span th:if="${#fields.hasErrors('sauce')}"
+                              th:errors="*{sauce}"></span>
+                    </li>
+                    <li>
+                        Toppings:
+                        <div th:each="topping : ${alltoppings}">
+                            <div th:if="${topping.enabledForUser == true}">
+                                <input type="checkbox" id="${topping.id}" th:field="*{toppings}" th:value="${topping.id}"/>
+                                <label for="${topping.id}">[[${topping.name}]]</label>
+                            </div>
                         </div>
+                    </li>
+                </ol>
+                <br>
+                <input type="submit" class="btn btn-primary mx-auto" value="Place Custom Pizza Order">
+            </form>
+            </div>
+        </div>
+        <div class="col mb-4">
+            <div class="card h-100" style="width: 18rem;">
+                <img class="card-img-top vh-25" src="https://media.nbcsandiego.com/2019/09/Pieology-Pizzeria-FB.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Specialty Pizza</h5>
+                    <p class="card-text">Choose from any one of our award winning specialty pizzas.</p>
+                    <div th:each="pizza : ${specialtypizzas}">
+                        <li>[[${pizza.name}]]</li>
                     </div>
+                    <a th:href="@{/menu}" class="btn btn-primary align-bottom">Order Specialty Pizza</a>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-                <button type="submit" class="btn btn-success">Order</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 
 <div th:insert="components :: scripts"></div>
