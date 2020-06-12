@@ -54,7 +54,7 @@
     <br />
 
     Email<br>
-    <input type="email" id="username" placeholder="Username" th:field="*{username}"/>
+    <input type="email" id="username" placeholder="email" th:field="*{username}"/>
     <mark><strong>
         <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Email Error</span>
     </strong></mark>
