@@ -10,11 +10,11 @@
 
 <div th:insert="components :: navbar"></div>
 
-<div class="container text-white">
+<div class="container text-white ">
 
-    <div class="row">
+    <div class="row w-75 mx-auto">
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3 text-center">User Registration</h4>
+            <h4 class="mb-3 text-center">New User Registration</h4>
             <form th:action="@{/register}" th:object="${user}" method="post"
                   class="needs-validation" novalidate>
                 <div class="row">

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+
     <div th:insert="components :: meta-links"></div>
     <style th:inline="text">
         body {
             background: url([[@{https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260}]])
-            no-repeat center center fixed !important;
-            background-size: cover !important;
-            height: 100% !important;
+            no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
         }
     </style>
     <title>PizzaPizza Menu</title>
-
 </head>
 
-<body class="pizza">
+<body class="pizza-bg">
 <div th:insert="components :: navbar"></div>
 
-<h2 class="text-center bg-success">Specialty Pizzas</h2>
+<h2 class="text-center text-white">Specialty Pizzas</h2>
 
 <div class="container">
     <div class="row row-cols-1 row-cols-md-3">
@@ -28,7 +29,7 @@
                     <h5 class="card-title">Custom Pizza</h5>
                     <p class="card-text">Mix and match any available toppings of your choice.</p>
                     <br/><br/><br/>
-                    <a th:href="@{/order}" class="btn btn-success">Order Custom Pizza</a>
+                    <a th:href="@{/order}" class="btn btn-primary">Order Custom Pizza</a>
                 </div>
             </div>
         </div>
@@ -39,7 +40,7 @@
                     <div class="card-body">
                         <h5 class="card-title">[[${pizza.name}]]</h5>
                         <p class="card-text">[[${pizza.description}]]</p>
-                        <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-success">Order</a>
+                        <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-primary">Order</a>
                     </div>
                 </div>
             </div>
