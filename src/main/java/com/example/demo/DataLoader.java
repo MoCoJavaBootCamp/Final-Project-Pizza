@@ -153,9 +153,8 @@ public class DataLoader implements CommandLineRunner {
         pizza.setToppings(toppings6);
         pizza.setPrice(pizza.getPrice());
         pizza.setImage("https://cdn.vox-cdn.com/thumbor/6t9djaI_BljF3hULLsiFTCzqDHE=/154x0:572x314/920x613/filters:focal(154x0:572x314):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/44221250/cheesestkPJfb.0.0.png");
-        pizza.setDescription("The Philly Cheese Steak pizza includes mozzarella and provolone " +
-                "cheeses, onions and green peppers. Made only in Philly, so please allow 1-2 weeks delivery if not " +
-                "local.");
+        pizza.setDescription("Includes mozzarella and provolone cheeses, onions and green peppers. " +
+                "Made only in Philly, so please allow 1-2 weeks delivery if not local.");
         pizzaRepository.save(pizza);
 
     }
