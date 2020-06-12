@@ -3,31 +3,44 @@
 <head>
     <div th:insert="components :: meta-links"></div>
     <title>Thank You!</title>
+    <style th:inline="text">
+        body {
+            background: url([[@{https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260}]])
+            no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
-<h1>Thank you for your purchase! Your order is being processed now.</h1>
-<h2>Your Order:</h2>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Time</th>
-        <th>Sauce</th>
-        <th>Toppings</th>
-        <th>Price</th>
-    </tr>
-    <tr>
-        <td>[[${pizza.name}]]</td>
-        <td>[[${pizza.date}]]</td>
-        <td>[[${pizza.sauce}]]</td>
-        <td>
-            <ul th:each="topping : ${pizza.toppings}">
-               <li>[[${topping.name}]]</li>
-            </ul>
-        </td>
-        <td>[[${pizza.price}]]</td>
-    </tr>
-</table>
-<a th:href="@{/}"><h3>Back to the Home Page</h3></a>
+
+<div class="container">
+    <h1>Thank you for your purchase! Your order is being processed now.</h1>
+    <h2>Your Order:</h2>
+    <table class="table bg-light">
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Sauce</th>
+            <th>Toppings</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>[[${pizza.name}]]</td>
+            <td>[[${pizza.printDate()}]]</td>
+            <td>[[${pizza.sauce}]]</td>
+            <td>
+                <ul th:each="topping : ${pizza.toppings}">
+                    <li>[[${topping.name}]]</li>
+                </ul>
+            </td>
+            <td>[[${pizza.price}]]</td>
+        </tr>
+    </table>
+    <a th:href="@{/}" class="btn btn-primary"><h3>Back to the Home Page</h3></a></div>
+
+<div th:insert="components :: scripts"></div>
 </body>
 </html>

@@ -144,7 +144,7 @@ public class HomeController {
         pizzas.add(confirmPizza);
         user.setPizzas(pizzas);
         userRepository.save(user);
-        return "redirect:/";
+        return "redirect:/confirmation";
     }
 
     @RequestMapping("/menu")
@@ -171,6 +171,12 @@ public class HomeController {
         Set<Pizza> allpizzasbyuser = pizzaRepository.findAllByUserUsername(username);
         model.addAttribute("pizzaorderhistory", allpizzasbyuser);
         return "orderhistory";
+    }
+
+    @RequestMapping("/confirmation")
+    public String confirmation(Model model) {
+        model.addAttribute(confirmPizza);
+        return "confirmation";
     }
 
     /* === ADMIN ROUTES === */
