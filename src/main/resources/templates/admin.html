@@ -152,7 +152,7 @@
                 <h2>List total sales</h2>
                 <div class="card bg-secondary p-3 w-75">
                     <div class="card-body">
-                        <div th:text="${totalsales}"></div>
+                        <div th:inline="text"><h3>[[${totalsales}]]</h3></div>
                     </div>
                 </div>
             </div>

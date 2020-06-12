@@ -11,17 +11,15 @@
 <h2 class="text-center">Specialty Pizzas</h2>
 
 <div class="container">
-    <div class="col-lg-4 d-flex align-items-stretch">
-        <div class="card-deck mb-3 text-center">
-            <div class="card-header d-flex align-items-center justify-content-center h-100">
-                <div th:each="pizza : ${specialtypizzas}">
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top vh-25" th:src="@{${pizza.image}}" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">[[${pizza.name}]]</h5>
-                            <p class="card-text">[[${pizza.description}]]</p>
-                            <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-primary">Order</a>
-                        </div>
+    <div class="row row-cols-1 row-cols-md-3">
+        <div th:each="pizza : ${specialtypizzas}">
+            <div class="col mb-4">
+                <div class="card h-100" style="width: 18rem;">
+                    <img class="card-img-top vh-25" th:src="@{${pizza.image}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">[[${pizza.name}]]</h5>
+                        <p class="card-text">[[${pizza.description}]]</p>
+                        <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-primary">Order</a>
                     </div>
                 </div>
             </div>

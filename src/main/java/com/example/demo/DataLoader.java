@@ -106,5 +106,22 @@ public class DataLoader implements CommandLineRunner {
         pizza.setDescription("A pizza for the carnivores. Pepperoni, gourmet sausage, chicken, and crispy bacon. Cruelty-free and a joy to see. Time to tuck in.");
         pizzaRepository.save(pizza);
 
+        //Hawaiian
+        Set<Topping> toppings4 = new HashSet<>();
+        toppings.add(toppingRepository.findToppingByName("Canadian Bacon"));
+        toppings.add(toppingRepository.findToppingByName("Pineapple"));
+        toppings.add(toppingRepository.findToppingByName("Bacon"));
+
+        pizza = new Pizza();
+        pizza.setSpecialty(true);
+        pizza.setSauce("Tomato");
+        pizza.setName("Hawaiian");
+        pizza.setToppings(toppings4);
+        pizza.setPrice(pizza.getPrice());
+        pizza.setImage("https://www.thespruceeats.com/thmb/c7q1QAXOnuTNPqp9J-pvRnzl46E=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/IMG_4618fhor-a98bebf4c7e743a8bbfd6071b5dafc12.jpg");
+        pizza.setDescription("Get a taste of the tropics. This super delicious pizza is loaded with sweet, " +
+                "juicy pineapple tidbits, julienne-cut Canadian bacon, and hickory-smoked bacon");
+        pizzaRepository.save(pizza);
+
     }
 }
