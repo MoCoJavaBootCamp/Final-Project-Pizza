@@ -21,9 +21,14 @@ PizzaPizza is the leading pizza ordering platform that allows you to create and 
 - home
 - login
 - menu
-- userinfo
+- order
+- checkout
+- confirmation
+- myaccount
+- orderhistory
 - admin
-- formPage
+- register
+- components
 
 ## Database Tables
 
