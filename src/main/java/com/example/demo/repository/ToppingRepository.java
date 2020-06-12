@@ -14,5 +14,4 @@ public interface ToppingRepository extends CrudRepository<Topping, Long> {
     Topping findToppingById(Long id);
     Set<Topping> findAllByEnabledForUserIsTrue();
     Set<Topping> findAll();
-//    Set<Topping> re
 }
