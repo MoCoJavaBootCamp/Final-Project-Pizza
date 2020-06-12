@@ -32,7 +32,7 @@ public class Pizza {
 
     private String description;
 
-    private String thumbnail;
+    private String image;
 
     @ManyToMany
     private Set<Topping> toppings;
@@ -121,12 +121,12 @@ public class Pizza {
         this.description = description;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getImage() {
+        return image;
     }
 
-    public void setThumbnail(String image) {
-        this.thumbnail = image;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public User getUser() {
