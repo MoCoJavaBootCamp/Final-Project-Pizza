@@ -149,6 +149,9 @@ public class HomeController {
 
     @RequestMapping("/menu")
     public String menu(Model model) {
+        for (Pizza pizza : pizzaRepository.findAll()) {
+            System.out.println(pizza.toString());
+        }
         model.addAttribute("specialtypizzas",
                 pizzaRepository.findPizzasBySpecialtyTrue());
         return "menu";
