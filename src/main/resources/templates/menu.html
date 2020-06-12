@@ -16,11 +16,11 @@
             <div class="card-header d-flex align-items-center justify-content-center h-100">
                 <div th:each="pizza : ${specialtypizzas}">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top vh-25" th:src="@{${pizza.thumbnail}}" alt="Card image cap">
+                        <img class="card-img-top vh-25" th:src="@{${pizza.image}}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">[[${pizza.name}]]</h5>
                             <p class="card-text">[[${pizza.description}]]</p>
-                            <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-primary">Order</a>
+                            <a th:href="@{/orderSpecial/{id}(id=${pizza.id})}" class="btn btn-success">Order</a>
                         </div>
                     </div>
                 </div>
