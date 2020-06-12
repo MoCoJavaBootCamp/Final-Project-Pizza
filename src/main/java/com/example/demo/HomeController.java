@@ -72,7 +72,7 @@ public class HomeController {
         roleRepository.save(role);
         userRepository.save(user);
 
-        return "index";
+        return "login";
     }
 
     @GetMapping("/search")
