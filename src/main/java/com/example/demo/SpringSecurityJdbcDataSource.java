@@ -11,9 +11,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SpringSecurityJdbcDataSource {
 
-    public static void main(String[] args) {
-        SpringApplication.run(SpringSecurityJdbcDataSource.class, args);
-    }
 
     @Bean
     public CommandLineRunner run(UserRepository userRepository,
