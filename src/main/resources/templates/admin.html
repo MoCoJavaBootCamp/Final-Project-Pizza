@@ -3,7 +3,6 @@
 <head>
 
     <div th:insert="components :: meta-links"></div>
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <title>PizzaPizza ADMIN</title>
 
@@ -14,7 +13,6 @@
 <div th:insert="components :: navbar"></div>
 
 <h1>Admin Page</h1>
-
 
 <div class="row">
     <div class="col-2">
@@ -57,7 +55,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">id</th>
-                                    <th scope="col">Topping</th>
+                                    <th scope="col" class="text-left">Topping</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Toggle Status</th>
                                 </tr>
@@ -65,7 +63,7 @@
                                 <tbody id="topping_table">
                                 <tr th:each="topping : ${alltoppings}">
                                     <td th:text="${topping.id}"></td>
-                                    <td th:text="${topping.name}"></td>
+                                    <td th:text="${topping.name}" class="text-left"></td>
                                     <td th:text="${topping.enabledForUser}? 'Available' : 'Unavailable'"></td>
                                     <td>
                                         <a th:href="@{/update/{id}(id=${topping.id})}">Update</a>
@@ -82,7 +80,7 @@
                  aria-labelledby="v-pills-customer-tab">
 
                 <h2>Find user</h2>
-                <input class="form-control" id="myInput" type="text" placeholder="Search">
+                <input class="form-control" id="user-search-input" type="text" placeholder="Search">
                 <div class="card-body bg-secondary">
                     <table>
                         <thead>
@@ -105,9 +103,9 @@
 
             <!-- TOTAL SALES  -->
             <div class="tab-pane fade" id="v-pills-sales" role="tabpanel" aria-labelledby="v-pills-sales-tab">
+                <h2>List total sales</h2>
                 <div class="card bg-secondary p-3 w-75">
                     <div class="card-body">
-                        <h5>List total sales</h5>
                         <div th:text="${totalsales}"></div>
                     </div>
                 </div>
@@ -116,10 +114,11 @@
     </div>
 </div>
 
+
 <!---- SEARCH FUNCTION ---->
 <script>
     $(document).ready(function(){
-        $("#myInput").on("keyup",function () {
+        $("#user-search-input").on("keyup",function () {
             var value= $(this).val().toLowerCase();
             $("#usertable tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)
@@ -127,7 +126,6 @@
         });
     });
 </script>
-
 <div th:insert="components :: scripts"></div>
 
 </body>
