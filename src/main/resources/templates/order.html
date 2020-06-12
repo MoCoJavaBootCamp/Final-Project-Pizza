@@ -45,8 +45,10 @@
             <li>
                 Toppings:
                 <div th:each="topping : ${alltoppings}">
-                    <input type="checkbox" id="${topping.id}" th:field="*{toppings}" th:value="${topping.id}"/>
-                    <label for="${topping.id}">[[${topping.name}]]</label>
+                    <div th:if="${topping.enabledForUser == true}">
+                        <input type="checkbox" id="${topping.id}" th:field="*{toppings}" th:value="${topping.id}"/>
+                        <label for="${topping.id}">[[${topping.name}]]</label>
+                    </div>
                 </div>
             </li>
         </ol>
