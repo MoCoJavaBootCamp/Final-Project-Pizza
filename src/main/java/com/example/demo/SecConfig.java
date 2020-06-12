@@ -21,9 +21,7 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("/js/**","/css/**","/register","/login",
-                        "/order", "/menu", "/checkout", "/","/styles/**","/styles/**", "/img/**",
-     "/img/**")
-     .permitAll()
+                        "/order", "/menu", "/checkout", "/","/styles/**", "/img/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .and()
