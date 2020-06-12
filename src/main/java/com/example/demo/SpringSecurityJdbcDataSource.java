@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class SpringSecurityJdbcDataSource {
+
     public static void main(String[] args) {
         SpringApplication.run(SpringSecurityJdbcDataSource.class, args);
     }
@@ -34,6 +35,8 @@ public class SpringSecurityJdbcDataSource {
             Role userRole = new Role("bart@gmail.com", "ROLE_USER");
             userRepository.save(user);
             roleRepository.save(userRole);
+
+
 
             User admin = new User(
                     "admin@domain.com",

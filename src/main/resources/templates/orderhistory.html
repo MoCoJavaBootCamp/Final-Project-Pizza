@@ -4,7 +4,6 @@
     <div th:insert="components :: meta-links"></div>
     <title>PizzaPizza Order History</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -13,27 +12,29 @@
 
 <h1>Order History</h1>
 
-<input class="form-control myInput" type="text" placeholder="Search">
 
-<div class="card-columns w-50 mx-auto">
-    <div class="card">
-        <div class="card-body">
-            <table>
-                <thead>
-                <tr>
-                    <th scope="col">Date Ordered</th>
-                    <th scope="col">Pizza Name</th>
-                    <th scope="col">Price</th>
-                </tr>
-                </thead>
-                <tbody id="order-history-table">
-                <tr th:each="pizza : ${pizzaorderhistory}">
-                    <td th:text="${pizza.date}"></td>
-                    <td th:text="${pizza.name}"></td>
-                    <td th:text="${pizza.price}"></td>
-                </tr>
-                </tbody>
-            </table>
+<div class="row">
+    <div class="col-10">
+        <div class=" mx-auto p-3 w-75">
+            <input class="form-control" id="order-history-search-input" type="text" placeholder="Search">
+            <div class="card-body bg-secondary">
+                <table>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="p-3">Date Ordered</th>
+                        <th scope="col" class="p-3">Pizza Name</th>
+                        <th scope="col" class="p-3">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody id="order-history-table">
+                    <tr th:each="pizza : ${pizzaorderhistory}">
+                        <td th:text="${pizza.date}" class="p-3"></td>
+                        <td th:text="${pizza.name}" class="p-3"></td>
+                        <td th:text="${pizza.price}" class="p-3"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -44,7 +45,7 @@
 
 <script>
     $(document).ready(function(){
-        $(".myInput").on("keyup",function () {
+        $("#order-history-search-input").on("keyup",function () {
             var value= $(this).val().toLowerCase();
             $("#order-history-table tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value)>-1)

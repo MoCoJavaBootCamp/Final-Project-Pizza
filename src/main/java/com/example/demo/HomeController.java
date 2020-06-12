@@ -21,7 +21,6 @@ import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -44,11 +43,11 @@ public class HomeController {
 
     Pizza confirmPizza;
 
-    @RequestMapping("/secure")
-    public String secure(Principal principal, Model model) {
+    @RequestMapping("/myaccount")
+    public String myaccount(Principal principal, Model model) {
         String username = principal.getName();
         model.addAttribute("user", userRepository.findByUsername(username));
-        return "secure";
+        return "myaccount";
     }
 
     @RequestMapping("/register")
@@ -78,7 +77,8 @@ public class HomeController {
 
     @GetMapping("/search")
     public String searchForUser(@SearchSpec Specification<User> specs, Model model) {
-        ResponseEntity<List<User>> responseEntity = new ResponseEntity<>(userRepository.findAll(Specification.where(specs)), HttpStatus.OK);
+        ResponseEntity<List<User>> responseEntity =
+                new ResponseEntity<>(userRepository.findAll(Specification.where(specs)), HttpStatus.OK);
         model.addAttribute("responseEntity", responseEntity);
         return "admin";
     }
@@ -186,18 +186,45 @@ public class HomeController {
 
         model.addAttribute("allusers", userRepository.findAll());
         model.addAttribute("totalsales", totalSalesStr);
-        model.addAttribute("toppings", toppingRepository.findAll());
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());
-        model.addAttribute("toppings", toppingRepository.findAll());
+        model.addAttribute("newtopping", new Topping());
+        model.addAttribute("alltoppings", toppingRepository.findAll());
         return "admin";
     }
 
-    @RequestMapping("/disable/{id}")
-    public String disableTopping(@PathVariable("id") long id, Model model) {
-        Topping topping = toppingRepository.findToppingById(id);
-        topping.setEnabledForUser(false);
-        model.addAttribute("topping", topping);
-        return "/admin";
+    @RequestMapping("/addtopping")
+    public String addTopping(@Valid @ModelAttribute("newtopping")
+                                         Topping toppingToAddInForm, BindingResult result) {
+        if (result.hasErrors()) {
+            toppingRepository.save(toppingToAddInForm);
+            return "redirect:/admin";
+        } else {
+            toppingRepository.save(toppingToAddInForm);
+            return "redirect:/admin";        }
     }
+
+    @RequestMapping("/updatetopping/{id}")
+    public String toggleTopping(@PathVariable("id") long id, Model model) {
+        Topping topping = toppingRepository.findToppingById(id);
+        System.out.println("update topping before: " + topping.toString());
+        topping.setEnabledForUser();
+        toppingRepository.save(topping);
+        System.out.println("update topping after: " + topping.toString());
+        model.addAttribute("topping", topping);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteTopping(@PathVariable("id") long id) {
+        toppingRepository.deleteById(id);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/updateaccount/{id}")
+    public String updateCar(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findById(id).get());
+        return "myaccount";
+    }
+
 }
