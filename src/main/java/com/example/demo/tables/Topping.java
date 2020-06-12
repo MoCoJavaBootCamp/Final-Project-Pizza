@@ -25,11 +25,10 @@ public class Topping {
         this.enabledForUser = true;
     }
 
-    public Topping(Topping copy) {
-
-    }
+    public Topping(Topping copy) { }
 
     public Topping(String name) {
+        this.enabledForUser = true;
         this.name = name;
     }
 
