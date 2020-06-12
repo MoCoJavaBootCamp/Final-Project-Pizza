@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+
     <script src="https://kit.fontawesome.com/060e8bc0c6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
     <style th:inline="text">
         body {
@@ -15,11 +16,13 @@
             min-height: 100vh;
         }
     </style>
-
+    <div th:insert="components :: meta-links"></div>
+    <title>Cart</title>
 </head>
 <body>
 
 <div th:insert="components :: navbar"></div>
+
 <div class="px-4 px-lg-0">
 
     <div class="container text-white py-5 text-center">
@@ -46,9 +49,6 @@
                                 <th scope="col" class="border-0 bg-light">
                                     <div class="py-2 text-uppercase">Quantity</div>
                                 </th>
-                                <th scope="col" class="border-0 bg-light">
-                                    <div class="py-2 text-uppercase">Remove</div>
-                                </th>
                             </tr>
                             </thead>
                             <tbody>
@@ -61,8 +61,8 @@
                                     <td>Two toppings free</td>
                                 </span>
                                 <td class="border-0 align-middle"><strong>1</strong></td>
-                                <td class="border-0 align-middle"><strong></strong></td>
-                                <td class="border-0 align-middle"><a href="#" class="text-dark"><i class="fa fa-trash"></i></a></td>
+
+
                             </tr>
 
                             </tbody>
@@ -118,7 +118,7 @@
     </div>
 </div>
 
-<a th:href="@{/order}">No, Go Back.</a>
+
 
 <div th:insert="components :: scripts"></div>
 
