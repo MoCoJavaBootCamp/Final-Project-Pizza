@@ -25,14 +25,12 @@ public class Topping {
         this.enabledForUser = true;
     }
 
-    public Topping(Topping copy) { }
-
     public Topping(String name) {
         this.enabledForUser = true;
         this.name = name;
     }
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "toppings")
     private Set<Pizza> pizzas;
 
     public long getId() {
@@ -61,8 +59,8 @@ public class Topping {
 
     public boolean isEnabledForUser() {return enabledForUser;}
 
-    public void setEnabledForUser(boolean enabledForUser) {
-        this.enabledForUser = enabledForUser;
+    public void setEnabledForUser() {
+        this.enabledForUser = !this.enabledForUser;
     }
 
     public Set<Pizza> getPizzas() {
@@ -71,5 +69,15 @@ public class Topping {
 
     public void setPizzas(Set<Pizza> pizzas) {
         this.pizzas = pizzas;
+    }
+
+    @Override
+    public String toString() {
+        return "Topping{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", count=" + count +
+                ", enabledForUser=" + enabledForUser +
+                '}';
     }
 }

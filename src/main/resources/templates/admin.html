@@ -19,104 +19,97 @@
 <div class="row">
     <div class="col-2">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-customer" role="tab"
-               aria-controls="v-pills-customer" aria-selected="true">Customer list</a>
-            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-               role="tab" aria-controls="v-pills-profile" aria-selected="false">Pizza stats</a>
-            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" r
-               ole="tab" aria-controls="v-pills-messages" aria-selected="false">Total Sale</a>
-            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
-               role="tab" aria-controls="v-pills-settings" aria-selected="false">Toppings</a>
+            <a class="nav-link active" id="v-pills-toppings-tab" data-toggle="pill" href="#v-pills-toppings"
+               role="tab" aria-controls="v-pills-toppings" aria-selected="true">Toppings</a>
+
+            <a class="nav-link" id="v-pills-customer-tab" data-toggle="pill" href="#v-pills-customer"
+               role="tab" aria-controls="v-pills-customer" aria-selected="false">Customer List</a>
+
+            <a class="nav-link" id="v-pills-sales-tab" data-toggle="pill" href="#v-pills-sales"
+               role="tab" aria-controls="v-pills-sales" aria-selected="false">Total Sales</a>
+
         </div>
     </div>
     <div class="col-10">
         <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-customer" role="tabpanel"
-                 aria-labelledby="v-pills-customer-tab">
-                <div class="card-columns">
-                    <div class="card ">
-                        <label for="myInput">Find user</label>
-                        <input class="form-control" id="myInput" type="text" placeholder="Search">
-                        <div class="card-body bg-primary">
+            <div class="tab-pane fade show active" id="v-pills-toppings" role="tabpanel"
+                 aria-labelledby="v-pills-toppings-tab">
 
+                <div class="card-columns">
+                        <div class="card bg-primary p-3">
+                            <h4>List top 3 toppings</h4>
+                            <div th:each="topping : ${toptoppings}">
+                                <p th:text="${topping.name}"></p>
+                            </div>
+                        </div>
+
+                        <div class="card bg-primary p-3">
+                            <h4>Add New Topping</h4>
+                            <form action="#" th:action="@{/addtopping}" th:object="${newtopping}" method="post">
+                                <input type="text" placeholder="Type topping here" th:field="*{name}"
+                                       th:value="topping"/>
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                            </form>
+                        </div>
+
+                        <div class="card bg-secondary p-3 text-center">
                             <table>
                                 <thead>
                                 <tr>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-
+                                    <th scope="col">id</th>
+                                    <th scope="col">Topping</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Toggle Status</th>
                                 </tr>
                                 </thead>
-                                <tbody id="usertable">
-                                <tr th:each="user : ${allusers}">
-                                    <td th:text="${user.username}"></td>
-                                    <td th:text="${user.firstName}"></td>
-                                    <td th:text="${user.lastName}"></td>
+                                <tbody id="topping_table">
+                                <tr th:each="topping : ${alltoppings}">
+                                    <td th:text="${topping.id}"></td>
+                                    <td th:text="${topping.name}"></td>
+                                    <td th:text="${topping.enabledForUser}? 'TRUE' : 'FALSE'"></td>
+                                    <td>
+                                        <a th:href="@{/update/{id}(id=${topping.id})}">Update</a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                <div class="card bg-primary p-3 ">
-                    <h5>List top 3 toppings</h5>
 
-                    <div th:each="topping : ${toptoppings}">
-                        <p th:text="${topping.name}"></p>
-                    </div>
+            <!---- CUSTOMER LIST ---->
+            <div class="tab-pane fade mx-auto p-3 w-75" id="v-pills-customer" role="tabpanel"
+                 aria-labelledby="v-pills-customer-tab">
+
+                <h2>Find user</h2>
+                <input class="form-control" id="myInput" type="text" placeholder="Search">
+                <div class="card-body bg-primary">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th scope="col" class="p-3">Email</th>
+                            <th scope="col" class="p-3">First Name</th>
+                            <th scope="col" class="p-3">Last Name</th>
+                        </tr>
+                        </thead>
+                        <tbody id="usertable">
+                        <tr th:each="user : ${allusers}">
+                            <td th:text="${user.username}" class="p-3"></td>
+                            <td th:text="${user.firstName}" class="p-3"></td>
+                            <td th:text="${user.lastName}" class="p-3"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                <div class="card bg-primary">
+
+            <!-- TOTAL SALES  -->
+            <div class="tab-pane fade" id="v-pills-sales" role="tabpanel" aria-labelledby="v-pills-sales-tab">
+                <div class="card bg-primary p-3 w-75">
                     <div class="card-body">
                         <h5>List total sales</h5>
                         <div th:text="${totalsales}"></div>
                     </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                <div class="card bg-secondary p-3 text-center w-50">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th scope="col">Topping</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Toggle Status</th>
-                            <th scope="col">id</th>
-
-                        </tr>
-                        </thead>
-                        <tbody id="topping_table">
-                        <tr th:each="topping : ${toppings}">
-                            <td th:text="${topping.name}"></td>
-                            <td th:text="${topping.enabledForUser}? 'TRUE' : 'FALSE'"></td>
-                            <td>
-<!--                                <a th:href="@{/disable/{id}(id=${topping.id})}">-->
-<!--                                    <button type="button" class="btn btn-danger"-->
-<!--                                            th:action="@{/disable/{id}(id=${topping.id})}" method="put">Disable-->
-<!--                                    </button>-->
-<!--                                </a>-->
-                                <!-- TURN INTO FORM AND SUBMIT -->
-                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-primary active">
-                                            <input type="radio" name="options" id="option1"
-                                                   checked>
-                                            Enable
-                                        </label>
-                                        <label class="btn btn-danger">
-                                            <input type="radio" name="options" id="option2"
-                                            th:href="@{/disable/{id}(id=${topping.id})}"> Disable
-                                        </label>
-                                    </div>
-                                <!-- TURN INTO FORM AND SUBMIT -->
-                            </td>
-                            <td th:text="${topping.id}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

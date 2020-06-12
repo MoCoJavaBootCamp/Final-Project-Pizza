@@ -5,11 +5,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface ToppingRepository extends CrudRepository<Topping, Long> {
     List<Topping> findTop3ByCountIsNotNullOrderByCountDesc();
     Topping findToppingByName(String topping);
     Topping findToppingById(Long id);
-    List<Topping> findAll();
+    Set<Topping> findAllByEnabledForUserIsTrue();
+    Set<Topping> findAll();
+//    Set<Topping> re
 }
