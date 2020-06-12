@@ -72,7 +72,7 @@ public class HomeController {
         roleRepository.save(role);
         userRepository.save(user);
 
-        return "index";
+        return "login";
     }
 
     @GetMapping("/search")
@@ -225,12 +225,6 @@ public class HomeController {
     public String deleteTopping(@PathVariable("id") long id) {
         toppingRepository.deleteById(id);
         return "redirect:/admin";
-    }
-
-    @RequestMapping("/updateaccount/{id}")
-    public String updateCar(@PathVariable("id") long id, Model model){
-        model.addAttribute("user", userRepository.findById(id).get());
-        return "myaccount";
     }
 
 }
