@@ -190,7 +190,7 @@ public class HomeController {
         String totalSalesStr = String.format("%.2f", totalsales);
         totalSalesStr = "$" + totalSalesStr;
 
-        model.addAttribute("allusers", userRepository.findAll());
+        model.addAttribute("allusers", userRepository.findAllByUsernameNotNullOrderByLastName());
         model.addAttribute("totalsales", totalSalesStr);
         model.addAttribute("toptoppings", toppingRepository
                 .findTop3ByCountIsNotNullOrderByCountDesc());

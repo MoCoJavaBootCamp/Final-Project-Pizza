@@ -58,11 +58,12 @@
 
 <div th:insert="components :: navbar"></div>
 
-<h1>Admin Page</h1>
+<h1 class="text-white">Admin Page</h1>
 
 <div class="row">
     <div class="col-2">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="nav flex-column nav-pills bg-white rounded" id="v-pills-tab" role="tablist"
+             aria-orientation="vertical">
             <a class="nav-link active" id="v-pills-toppings-tab" data-toggle="pill" href="#v-pills-toppings"
                role="tab" aria-controls="v-pills-toppings" aria-selected="true">Toppings</a>
 
@@ -80,14 +81,14 @@
                  aria-labelledby="v-pills-toppings-tab">
 
                 <div class="card-columns">
-                        <div class="card bg-primary p-3">
+                        <div class="card p-3">
                             <h4>List top 3 toppings</h4>
                             <div th:each="topping : ${toptoppings}">
                                 <p th:text="${topping.name}"></p>
                             </div>
                         </div>
 
-                        <div class="card bg-primary p-3">
+                        <div class="card p-3">
                             <h4>Add New Topping</h4>
                             <form action="#" th:action="@{/addtopping}" th:object="${newtopping}" method="post">
                                 <input type="text" placeholder="Type topping here" th:field="*{name}"
@@ -96,7 +97,7 @@
                             </form>
                         </div>
 
-                        <div class="card bg-secondary p-3 text-center">
+                        <div class="card p-3 text-center">
                             <table>
                                 <thead>
                                 <tr>
@@ -122,24 +123,24 @@
             </div>
 
             <!---- CUSTOMER LIST ---->
-            <div class="tab-pane fade mx-auto p-3 w-75" id="v-pills-customer" role="tabpanel"
+            <div class="tab-pane fade mx-auto p-3 w-75 bg-white rounded" id="v-pills-customer" role="tabpanel"
                  aria-labelledby="v-pills-customer-tab">
 
                 <h2>Find user</h2>
                 <input class="form-control" id="user-search-input" type="text" placeholder="Search">
-                <div class="card-body bg-secondary">
+                <div class="card-body">
                     <table>
                         <thead>
                         <tr>
-                            <th scope="col" class="p-3">First Name</th>
                             <th scope="col" class="p-3">Last Name</th>
+                            <th scope="col" class="p-3">First Name</th>
                             <th scope="col" class="p-3">Email</th>
                         </tr>
                         </thead>
                         <tbody id="usertable">
                         <tr th:each="user : ${allusers}">
-                            <td th:text="${user.firstName}" class="p-3"></td>
                             <td th:text="${user.lastName}" class="p-3"></td>
+                            <td th:text="${user.firstName}" class="p-3"></td>
                             <td th:text="${user.username}" class="p-3"></td>
                         </tr>
                         </tbody>
@@ -148,9 +149,10 @@
             </div>
 
             <!-- TOTAL SALES  -->
-            <div class="tab-pane fade" id="v-pills-sales" role="tabpanel" aria-labelledby="v-pills-sales-tab">
+            <div class="tab-pane fade bg-white rounded p-3 w-75" id="v-pills-sales" role="tabpanel"
+                 aria-labelledby="v-pills-sales-tab">
                 <h2>List total sales</h2>
-                <div class="card bg-secondary p-3 w-75">
+                <div class="card">
                     <div class="card-body">
                         <div th:inline="text"><h3>[[${totalsales}]]</h3></div>
                     </div>

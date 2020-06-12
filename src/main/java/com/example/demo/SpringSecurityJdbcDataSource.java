@@ -36,7 +36,61 @@ public class SpringSecurityJdbcDataSource {
             userRepository.save(user);
             roleRepository.save(userRole);
 
+            User sue = new User(
+                    "shan@montgomerycollege.edu",
+                    "1234",
+                    "Sue",
+                    "Han",
+                    30312567,
+                    "123 Main Street",
+                    "Rockville",
+                    12345,
+                    true);
+            Role sueRole = new Role("shan@montgomerycollege.edu", "ROLE_USER");
+            userRepository.save(sue);
+            roleRepository.save(sueRole);
 
+            User jaeha = new User(
+                    "jaeha@gmail.com",
+                    "1234",
+                    "Jaeha ",
+                    "Song",
+                    30312567,
+                    "123 Rockville Pike",
+                    "Rockville",
+                    12345,
+                    true);
+            Role jaehaRole = new Role("jaeha@gmail.com", "ROLE_USER");
+            userRepository.save(jaeha);
+            roleRepository.save(jaehaRole);
+
+            User eyasu = new User(
+                    "eyasu@gmail.com",
+                    "1234",
+                    "Eyasu",
+                    "Haile",
+                    30312567,
+                    "123 Frederick Ave",
+                    "Gaithersburg",
+                    12345,
+                    true);
+            Role eyasuRole = new Role("eyasu@gmail.com", "ROLE_USER");
+            userRepository.save(eyasu);
+            roleRepository.save(eyasuRole);
+
+            User andrew = new User(
+                    "drewdoolittle@gmail.com",
+                    "1234",
+                    "Andrew",
+                    "Doolittle",
+                    30312567,
+                    "123 Wisconsin Ave",
+                    "Bethesda",
+                    12345,
+                    true);
+            Role andrewRole = new Role("drewdoolittle@gmail.com", "ROLE_USER");
+            userRepository.save(andrew);
+            roleRepository.save(andrewRole);
 
             User admin = new User(
                     "admin@domain.com",
