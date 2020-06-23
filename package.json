@@ -1,0 +1,31 @@
+{
+  "name": "final-project-pizza",
+  "version": "1.0.0",
+  "description": "pizza ordering platform",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js"
+  },
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azdoolittle/Final-Project-Pizza.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azdoolittle/Final-Project-Pizza/issues"
+  },
+  "homepage": "https://github.com/azdoolittle/Final-Project-Pizza#readme"
+}
