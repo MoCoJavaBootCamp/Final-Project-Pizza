@@ -1,0 +1,33 @@
+{
+  "name": "Final-Project-Pizza",
+  "version": "1.0.0",
+  "description": "PizzaPizza is the leading pizza ordering platform that allows you to create and order pizzas, but also generate detailed reports about your users and sales.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azdoolittle/Final-Project-Pizza.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/azdoolittle/Final-Project-Pizza/issues"
+  },
+  "homepage": "https://github.com/azdoolittle/Final-Project-Pizza#readme",
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "scripts": {
+    "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

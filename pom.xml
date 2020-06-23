@@ -82,6 +82,10 @@
                     <mainClass>com.example.demo.PizzaApp</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 
