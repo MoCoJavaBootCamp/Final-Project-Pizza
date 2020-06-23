@@ -1,10 +1,9 @@
-package com.example.demo.tables;
+package com.example.demo.modal;
 
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
 import java.util.Set;
 
 @Entity

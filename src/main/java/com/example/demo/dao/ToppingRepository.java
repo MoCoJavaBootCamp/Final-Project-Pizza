@@ -1,11 +1,12 @@
-package com.example.demo.repository;
+package com.example.demo.dao;
 
-import com.example.demo.tables.Topping;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Set;
+
+import com.example.demo.modal.Topping;
 
 @Repository
 public interface ToppingRepository extends CrudRepository<Topping, Long> {

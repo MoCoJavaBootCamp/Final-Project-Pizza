@@ -1,4 +1,4 @@
-package com.example.demo.tables;
+package com.example.demo.modal;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

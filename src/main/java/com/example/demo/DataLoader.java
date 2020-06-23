@@ -1,8 +1,9 @@
 package com.example.demo;
-import com.example.demo.repository.PizzaRepository;
-import com.example.demo.repository.ToppingRepository;
-import com.example.demo.tables.Pizza;
-import com.example.demo.tables.Topping;
+import com.example.demo.modal.Pizza;
+import com.example.demo.modal.Topping;
+import com.example.demo.dao.PizzaRepository;
+import com.example.demo.dao.ToppingRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

@@ -11,7 +11,3 @@ public class PizzaApp {
     }
 
 }
-
-// change mapping
-// delete toppings from topping repo
-// Set<Topping>

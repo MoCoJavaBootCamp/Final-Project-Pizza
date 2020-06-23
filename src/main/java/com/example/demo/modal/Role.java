@@ -1,7 +1,6 @@
-package com.example.demo.tables;
+package com.example.demo.modal;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name="roles")

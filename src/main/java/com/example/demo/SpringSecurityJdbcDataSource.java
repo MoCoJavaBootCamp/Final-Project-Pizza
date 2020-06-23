@@ -1,10 +1,10 @@
 package com.example.demo;
 
-import com.example.demo.repository.*;
-import com.example.demo.tables.Role;
-import com.example.demo.tables.User;
+import com.example.demo.modal.Role;
+import com.example.demo.modal.User;
+import com.example.demo.dao.*;
+
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class SpringSecurityJdbcDataSource {
 
     @Bean
-    public CommandLineRunner run(UserRepository userRepository,
+    public CommandLineRunner run(UserDAO userRepository,
                                  RoleRepository roleRepository,
                                  PizzaRepository pizzaRepository,
                                  ToppingRepository toppingRepository,
